@@ -1,0 +1,562 @@
+/*
+ * Reckon Research — Static Site Stylesheet
+ * Design: Nautical Editorial
+ * Colors: Navy #0D1F5C / White #FFFFFF
+ * Fonts: Playfair Display (headings), Source Serif 4 (body), JetBrains Mono (code), Inter (labels)
+ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&family=Inter:wght@400;500;600&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --navy:            #0D1F5C;
+  --navy-mid:        #1A2340;
+  --bg:              #FFFFFF;
+  --sidebar-bg:      #F8F9FB;
+  --sidebar-border:  #E8EBF0;
+  --foreground:      #1A2340;
+  --section-num:     #8A93A8;
+  --footer-color:    #9AA0B0;
+  --divider:         #E8EBF0;
+  --terminal-bg:     #0D1F5C;
+  --terminal-text:   #E8EDF8;
+  --terminal-comment:#6B7FA8;
+  --copy-btn:        #8A93A8;
+  --copy-done:       #4A9B6F;
+  --sidebar-width:   220px;
+  --content-max:     680px;
+}
+
+[data-theme="dark"] {
+  --bg:              #0D1425;
+  --sidebar-bg:      #0A1130;
+  --sidebar-border:  rgba(255,255,255,0.07);
+  --foreground:      #D8E0F0;
+  --section-num:     #4A5578;
+  --footer-color:    #3D4A6B;
+  --divider:         rgba(255,255,255,0.08);
+  --terminal-bg:     #060E1F;
+  --terminal-text:   #C8D4EE;
+  --terminal-comment:#3D5080;
+  --copy-btn:        #4A5578;
+  --copy-done:       #4A9B6F;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--foreground);
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.85;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+
+a { color: inherit; }
+a:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  width: auto;
+  height: auto;
+  padding: 6px 12px;
+  background: var(--navy);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  border-radius: 4px;
+  z-index: 9999;
+  overflow: visible;
+}
+
+/* ── Layout ── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  transition: background-color 250ms ease, border-color 250ms ease;
+}
+
+.brand {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+}
+.brand:hover .brand-mark { opacity: 0.75; }
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.75rem;
+  transition: opacity 200ms ease;
+}
+
+.brand-name {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.brand-sub {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--section-num);
+  margin-top: 3px;
+}
+
+/* ── Sidebar nav ── */
+.sidebar-nav {
+  flex: 1;
+  list-style: none;
+}
+
+.sidebar-nav li + li { margin-top: 2px; }
+
+.nav-link {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--section-num);
+  text-decoration: none;
+  border-radius: 3px;
+  border-left: 2px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+.nav-link:hover { color: var(--foreground); }
+.nav-link.active {
+  color: var(--foreground);
+  border-left-color: var(--navy);
+  font-weight: 600;
+}
+[data-theme="dark"] .nav-link.active { border-left-color: #4A6FD4; }
+
+.nav-num {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--section-num);
+  min-width: 24px;
+  flex-shrink: 0;
+}
+
+/* ── Sidebar bottom ── */
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--divider);
+}
+
+.mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mode-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--section-num);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--section-num);
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 150ms ease;
+}
+.theme-toggle:hover { color: var(--foreground); }
+.theme-toggle:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--footer-color);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.sidebar-link:hover { color: var(--foreground); }
+
+/* ── Main content ── */
+.main-content {
+  margin-left: var(--sidebar-width);
+  width: 100%;
+  min-height: 100vh;
+}
+
+.content-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 6rem 0 5rem;
+}
+.section:first-child { padding-top: 6rem; }
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 0;
+}
+
+.section-number {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--section-num);
+  margin-bottom: 1rem;
+}
+
+/* ── Typography ── */
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  margin-bottom: 2rem;
+}
+
+.body-text { color: var(--foreground); }
+.body-text p + p { margin-top: 1.25rem; }
+
+/* ── Footnote ── */
+.footnote-ref {
+  font-size: 0.7em;
+  vertical-align: super;
+  text-decoration: none;
+  color: var(--section-num);
+  margin-left: 1px;
+}
+.footnote-ref:hover { color: var(--foreground); }
+
+.footnote-block {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+.footnote-block p {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--section-num);
+}
+
+/* ── Research agenda DL ── */
+.agenda-list { list-style: none; }
+.agenda-item {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.agenda-item:last-child { margin-bottom: 0; }
+
+.agenda-label {
+  flex-shrink: 0;
+  width: 4rem;
+  padding-top: 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--section-num);
+}
+
+.agenda-body { color: var(--foreground); }
+
+/* ── Terminal blocks ── */
+.install-group { margin-top: 2rem; }
+.install-group + .install-group { margin-top: 0.75rem; }
+
+.install-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.install-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--section-num);
+}
+
+.terminal-block {
+  display: block;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.terminal-comment { color: var(--terminal-comment); }
+
+/* ── Copy button ── */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--copy-btn);
+  padding: 0;
+  line-height: 1;
+  transition: color 150ms ease, transform 100ms ease;
+}
+.copy-btn:hover { color: var(--foreground); }
+.copy-btn:active { transform: scale(0.96); }
+.copy-btn:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; border-radius: 2px; }
+.copy-btn.done { color: var(--copy-done); }
+
+/* ── Berth subtitle ── */
+.berth-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--section-num);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+/* ── Italic pull quote ── */
+.pull-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--foreground);
+  margin-top: 1.25rem;
+}
+
+/* ── External link icon ── */
+.ext-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  margin-bottom: 2px;
+  opacity: 0.3;
+  transition: opacity 150ms ease;
+}
+a:hover .ext-icon { opacity: 0.6; }
+
+/* ── Footer ── */
+.site-footer {
+  border-top: 1px solid var(--divider);
+  padding: 2rem 4rem;
+  margin-left: var(--sidebar-width);
+}
+
+.footer-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--footer-color);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--footer-color);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.footer-links a:hover { color: var(--foreground); }
+
+/* ── Fade-in animation ── */
+@media (prefers-reduced-motion: no-preference) {
+  .fade-section {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Mobile header ── */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: var(--sidebar-bg);
+  border-bottom: 1px solid var(--sidebar-border);
+  transition: background-color 250ms ease;
+}
+
+.mobile-logo { height: 28px; width: auto; }
+
+.mobile-controls { display: flex; align-items: center; gap: 12px; }
+
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+.hamburger:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; border-radius: 2px; }
+
+/* ── Mobile nav drawer ── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 56px;
+  z-index: 40;
+  background-color: var(--sidebar-bg);
+  padding: 1.5rem 1.5rem;
+  overflow-y: auto;
+}
+.mobile-nav.open { display: block; }
+.mobile-nav .nav-link {
+  font-size: 15px;
+  padding: 10px 8px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1023px) {
+  .sidebar { display: none; }
+  .mobile-header { display: flex; }
+  .main-content {
+    margin-left: 0;
+    padding-top: 56px;
+  }
+  .site-footer {
+    margin-left: 0;
+    padding: 2rem 1.5rem;
+  }
+  .content-inner { padding: 0 1.5rem; }
+  .section { padding: 4rem 0 3.5rem; }
+  .section:first-child { padding-top: 3rem; }
+}
+
+@media (max-width: 480px) {
+  .content-inner { padding: 0 1.25rem; }
+}
