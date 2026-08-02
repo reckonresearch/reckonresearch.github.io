@@ -261,6 +261,20 @@ berth estimate --model llama3-8b --batch 32</code>
       <section class="section fade-section" aria-labelledby="sounding-heading">
         <span class="section-label" aria-hidden="true">04</span>
         <h2 id="sounding-heading">sounding: check the estimate against your own hardware</h2>
+
+        <picture class="section-banner">
+          <source type="image/webp"
+                  srcset="/assets/sounding-banner.webp 1000w,
+                          /assets/sounding-banner@2x.webp 2000w"
+                  sizes="(max-width: 720px) 100vw, 720px">
+          <img src="/assets/sounding-banner.png"
+               srcset="/assets/sounding-banner.png 1000w,
+                       /assets/sounding-banner@2x.png 2000w"
+               sizes="(max-width: 720px) 100vw, 720px"
+               width="1000" height="250"
+               alt="" aria-hidden="true"
+               loading="lazy" decoding="async">
+        </picture>
         <span class="berth-subtitle">The measurement harness that produced the validation data</span>
         <div class="body-text">
           <p>berth is an estimator. It predicts from a model, and an estimate you cannot check is just an assertion. So berth ships <code class="inline-code">sounding</code>, the same measurement harness that produced its own validation data. You use the estimator; the harness is how we earned your trust in it.</p>

@@ -226,3 +226,16 @@
     font-size: 12.5px;
   }
 }
+
+/* Decorative banner under a section heading. Width and height are declared on
+   the img so the browser reserves space and the text below does not jump. */
+.section-banner {
+  display: block;
+  margin: 0 0 2rem;
+  max-width: 720px;
+}
+.section-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
