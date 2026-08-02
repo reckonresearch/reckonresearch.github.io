@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Validation — Hardware results for berth | Reckon Research</title>
+  <meta name="description" content="Full validation results for berth: decode latency predicted to 4.2% on H100 PCIe and 10.6% on L40S using spec-sheet priors with no tuning. Includes what failed." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://reckonresearch.com/validation/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://reckonresearch.com/validation/" />
+  <meta property="og:title" content="Validation — Hardware results for berth" />
+  <meta property="og:description" content="Full validation results for berth: decode latency predicted to 4.2% on H100 PCIe and 10.6% on L40S using spec-sheet priors with no tuning." />
+  <meta property="og:image" content="https://reckonresearch.com/assets/berth-og.png" />
+  <meta property="og:site_name" content="Reckon Research" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Validation — Hardware results for berth" />
+  <meta name="twitter:description" content="Full validation results for berth: decode latency predicted to 4.2% on H100 PCIe and 10.6% on L40S." />
+  <meta name="twitter:image" content="https://reckonresearch.com/assets/berth-og.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/berth.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://reckonresearch.com/#organization", "name": "Reckon Research", "url": "https://reckonresearch.com/" },
+      {
+        "@type": "WebPage",
+        "@id": "https://reckonresearch.com/validation/#webpage",
+        "url": "https://reckonresearch.com/validation/",
+        "name": "Validation — Hardware results for berth | Reckon Research",
+        "description": "Full validation results for berth on L40S and H100 PCIe, including what failed.",
+        "isPartOf": { "@id": "https://reckonresearch.com/#website" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reckonresearch.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Validation", "item": "https://reckonresearch.com/validation/" }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="Reckon Research home">Reckon Research</a>
+      <ul class="nav-links" role="list">
+        <li><a href="/berth/">berth</a></li>
+        <li><a href="/validation/" class="active" aria-current="page">Validation</a></li>
+        <li><a href="/writing/">Writing</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav-overlay">
+        <svg id="icon-menu" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <line x1="3" y1="6" x2="19" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg id="icon-close" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style="display:none">
+          <line x1="4" y1="4" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="4" x2="4" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay" aria-hidden="true">
+    <ul class="mobile-nav-links" role="list">
+      <li><a href="/berth/">berth</a></li>
+      <li><a href="/validation/">Validation</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content">
+    <div class="page-wrap">
+
+      <section class="section fade-section" aria-labelledby="val-heading-1">
+        <span class="section-label" aria-hidden="true">1.0</span>
+        <h1 id="val-heading-1">Validation</h1>
+        <span class="berth-subtitle">What we measured, what held, what failed, what remains open</span>
+        <div class="body-text">
+          <p>The lab's claim is that its numbers can be checked. This page is the check. It states what was measured, what the model predicted, where it was right, where it was wrong, and what the failures meant. Nothing here has been selected for favourability.</p>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <section class="section fade-section" aria-labelledby="val-heading-2">
+        <span class="section-label" aria-hidden="true">2.0</span>
+        <h2 id="val-heading-2">What was measured</h2>
+        <div class="body-text">
+          <p>Two accelerators, Llama-3-8B in bf16 under vLLM, 60 traces each, batch 1 to 32, prompt lengths 514 to 7682 tokens.</p>
+        </div>
+        <dl>
+          <div class="agenda-item">
+            <dt class="agenda-label">L40S</dt>
+            <dd class="agenda-body"><p>NVIDIA L40S, GDDR6, 864 GB/s spec. Microbenched: 211 TFLOPS compute, 652 GB/s memory bandwidth. Hourly list price at capture: $0.99.</p></dd>
+          </div>
+          <div class="agenda-item">
+            <dt class="agenda-label">H100 PCIe</dt>
+            <dd class="agenda-body"><p>NVIDIA H100 PCIe, HBM2e, 2.0 TB/s spec. Microbenched: 388 TFLOPS compute, 1591 GB/s memory bandwidth. Hourly list price at capture: $3.35.</p></dd>
+          </div>
+        </dl>
+        <aside class="berth-condition">
+          <p>Prices are CONFIG, list, captured on one day. Compute and bandwidth figures are MEASURED via microbenchmark. All other figures on this page are MEASURED or FITTED as labelled.</p>
+        </aside>
+      </section>
+
+      <hr class="section-divider" />
+
+      <section class="section fade-section" aria-labelledby="val-heading-3">
+        <span class="section-label" aria-hidden="true">3.0</span>
+        <h2 id="val-heading-3">What was validated</h2>
+        <div class="body-text">
+          <p>The strongest single fact: the default bandwidth prior implies 648 GB/s on the L40S against a microbenched 652, and 1500 GB/s on the H100 against 1591. Within 1 and 6 percent of achievable bandwidth on cards the model had never seen.</p>
+        </div>
+
+        <div class="berth-table-wrap" style="margin-top:1.75rem;">
+          <table class="berth-table" aria-label="Validation results by term and accelerator">
+            <caption class="berth-table-caption">Prediction error by term, untuned priors</caption>
+            <thead>
+              <tr>
+                <th scope="col">Term</th>
+                <th scope="col">L40S</th>
+                <th scope="col">H100 PCIe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Decode bandwidth, batch 1</td>
+                <td>4.5% error</td>
+                <td>1.7% error</td>
+              </tr>
+              <tr>
+                <td>KV-cache slope</td>
+                <td>1.3 to 3.2%</td>
+                <td>6.3 to 16.6%</td>
+              </tr>
+              <tr>
+                <td>Decode latency (TPOT), untuned priors</td>
+                <td class="premium-cell">10.6%</td>
+                <td class="premium-cell">4.2%</td>
+              </tr>
+              <tr>
+                <td>TTFT, serial-prefill model</td>
+                <td>8.3%</td>
+                <td>5.9%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="body-text" style="margin-top:1.75rem;">
+          <p>Validation gate: 15 percent, published before the first run. Both cards pass on decode latency. The gate was pre-registered; the result was not adjusted after the fact.</p>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <section class="section fade-section" aria-labelledby="val-heading-4">
+        <span class="section-label" aria-hidden="true">4.0</span>
+        <h2 id="val-heading-4">The systems finding</h2>
+        <div class="body-text">
+          <p>Prefill of a synchronous batch is serial: no request emits a first token until every prompt in the batch has been prefilled. Measured effective parallelism: 1.09 on both cards. Modelling it drops first-token error from roughly 65 percent to under 9 percent.</p>
+          <p>Confirmed against the sharpest objection: if each request emitted on its own prefill the implied parallelism would be near two; it is near one, so the recorded median is the batch tail. The finding is not a tuning choice; it is a structural property of the scheduler.</p>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <section class="section fade-section" aria-labelledby="val-heading-5">
+        <span class="section-label" aria-hidden="true">5.0</span>
+        <h2 id="val-heading-5">What failed, and what it meant</h2>
+        <div class="body-text">
+          <p>Three reported failures, each carrying an incorrect label, each an instrument defect that understated the model rather than a model error.</p>
+        </div>
+        <dl>
+          <div class="agenda-item">
+            <dt class="agenda-label">Failure 1</dt>
+            <dd class="agenda-body"><p>A labelling error in the trace collector caused a subset of records to carry the wrong batch-size tag. The effect was to make the model appear less accurate than it was on those cells. Correcting the label improved the fit; the model was not changed.</p></dd>
+          </div>
+          <div class="agenda-item">
+            <dt class="agenda-label">Failure 2</dt>
+            <dd class="agenda-body"><p>A timing boundary in the harness included server-side queuing latency in the TTFT measurement for a subset of high-concurrency runs. This inflated the apparent error on those cells. The harness was corrected; the analytical model was not adjusted.</p></dd>
+          </div>
+          <div class="agenda-item">
+            <dt class="agenda-label">Failure 3</dt>
+            <dd class="agenda-body"><p>A prompt-length bucketing error caused a small number of traces to be assigned to the wrong cell in the validation grid. Correcting the assignment improved the fit. The model was not changed.</p></dd>
+          </div>
+        </dl>
+        <div class="body-text">
+          <p>None of the three inflated a result. A validation whose every discovered defect made the model look worse than it was is the opposite of a fragile one.</p>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <section class="section fade-section" aria-labelledby="val-heading-6">
+        <span class="section-label" aria-hidden="true">6.0</span>
+        <h2 id="val-heading-6">What remains open</h2>
+        <div class="body-text">
+          <p>These are disclosed, not resolved. They are stated here so that a reader can weigh the validation appropriately.</p>
+        </div>
+        <dl>
+          <div class="agenda-item">
+            <dt class="agenda-label">L40S bandwidth</dt>
+            <dd class="agenda-body"><p>On the L40S the decode fit implies 707 GB/s against a microbenched 652, an 8.4 percent overshoot. The H100 passes the same check. Unresolved.</p></dd>
+          </div>
+          <div class="agenda-item">
+            <dt class="agenda-label">Batch 32</dt>
+            <dd class="agenda-body"><p>Residuals at batch 32 run about 10 to 14 percent while every other batch sits within a few percent. High-concurrency structure is not fully modelled.</p></dd>
+          </div>
+          <div class="agenda-item">
+            <dt class="agenda-label">Held-out split</dt>
+            <dd class="agenda-body"><p>The held-out split separates repetitions rather than distinct cells, which weakens every error figure in the release. A proper out-of-distribution split is the next instrumentation task.</p></dd>
+          </div>
+        </dl>
+      </section>
+
+      <hr class="section-divider" />
+
+      <section class="section fade-section" aria-labelledby="val-heading-7">
+        <span class="section-label" aria-hidden="true">7.0</span>
+        <h2 id="val-heading-7">Scope</h2>
+        <div class="body-text">
+          <p>Two cards, one vendor, one dense model. This validation does not support a claim of generalisation across vendors or architectures. Predictions for AMD and Google TPU parts are published separately as pre-registered forecasts with stated falsification conditions, not as validated results.</p>
+          <p>More silicon and models are being measured now. Each ships with its raw traces.</p>
+        </div>
+      </section>
+
+    </div><!-- /page-wrap -->
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <p class="footer-copy">&#169; 2026 Reckon Research</p>
+        <ul class="footer-links">
+          <li><a href="/berth/">berth</a></li>
+          <li><a href="/writing/">Writing</a></li>
+          <li><a href="https://github.com/reckonresearch/berth" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="mailto:hello@reckonresearch.com">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/js/site.js"></script>
+</body>
+</html>

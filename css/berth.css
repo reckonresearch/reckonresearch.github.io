@@ -1,0 +1,228 @@
+/* ── berth.css: page-specific styles for /berth/ ──
+   Inherits all tokens and base classes from style.css.
+   Tinker-inspired: full-bleed hero, data tables, clean content sections.
+   No dark mode — pure white background throughout.
+*/
+
+/* ── Hero: TM-style — white background, centered viz image above text ── */
+.berth-hero {
+  width: 100%;
+  background: var(--bg);
+  text-align: center;
+  padding: 0.5rem 0 0;
+}
+
+.berth-hero-viz {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.berth-viz-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.berth-hero-content {
+  padding: 2rem 2rem 3.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.berth-hero-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--fg);
+  margin-bottom: 1rem;
+}
+
+.berth-hero-heading em {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.berth-hero-sub {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--fg-muted);
+  max-width: 520px;
+  margin: 0 auto 1.75rem;
+}
+
+.berth-hero-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.berth-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 9px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease, transform 100ms ease;
+}
+.berth-btn:hover { text-decoration: none; }
+.berth-btn:active { transform: scale(0.97); }
+
+.berth-btn-primary {
+  background-color: #e8e8e8;
+  color: var(--fg);
+}
+.berth-btn-primary:hover { background-color: #d8d8d8; }
+
+.berth-btn-secondary {
+  background-color: transparent;
+  color: var(--fg);
+  border: none;
+}
+.berth-btn-secondary:hover { color: var(--fg-muted); }
+
+/* ── Data table ── */
+.berth-table-wrap {
+  margin-top: 2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.berth-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+}
+
+.berth-table-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  text-align: left;
+  padding-bottom: 0.75rem;
+}
+
+.berth-table thead th {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  text-align: left;
+  padding: 0.6rem 1rem 0.6rem 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.berth-table tbody td {
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--divider);
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+.berth-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.premium-cell {
+  font-weight: 600;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Measurement condition note ── */
+.berth-condition {
+  margin-top: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 2px solid var(--divider);
+  background-color: #f8f8f8;
+}
+
+.berth-condition p {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--fg-muted);
+  margin: 0;
+}
+
+/* ── Validation / docs link ── */
+.berth-validation-link {
+  margin-top: 1.5rem;
+}
+
+.berth-inline-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  gap: 4px;
+  border-bottom: 1px solid var(--divider);
+  padding-bottom: 1px;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.berth-inline-link:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+  text-decoration: none;
+}
+
+/* ── Provenance callout ── */
+.berth-provenance {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 2px solid var(--navy);
+  background-color: #f8f8f8;
+}
+
+/* ── Note block ── */
+.berth-note {
+  margin-top: 1.25rem;
+}
+
+/* ── Inline code ── */
+.inline-code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
+  background-color: #f4f4f4;
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--navy);
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .berth-hero { padding: 0.25rem 0 0; }
+  .berth-hero-viz { padding: 0 1.25rem; }
+  .berth-hero-content { padding: 1.5rem 1.25rem 2.5rem; }
+}
+
+@media (max-width: 640px) {
+  .berth-hero-heading { font-size: 1.75rem; }
+  .berth-hero-sub { font-size: 15px; }
+  .berth-table thead th,
+  .berth-table tbody td {
+    padding-right: 0.5rem;
+    font-size: 12.5px;
+  }
+}

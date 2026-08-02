@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>berth — Inference placement estimator | Reckon Research</title>
+  <meta name="description" content="berth predicts what an inference workload costs and how fast it runs on any chip, under a given latency target, before you rent it. Open source, physics based, validated on real hardware." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://reckonresearch.com/berth/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://reckonresearch.com/berth/" />
+  <meta property="og:title" content="berth — Inference placement estimator" />
+  <meta property="og:description" content="berth predicts what an inference workload costs and how fast it runs on any chip, under a given latency target, before you rent it." />
+  <meta property="og:image" content="https://reckonresearch.com/assets/berth-og.png" />
+  <meta property="og:site_name" content="Reckon Research" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="berth — Inference placement estimator" />
+  <meta name="twitter:description" content="berth predicts what an inference workload costs and how fast it runs on any chip, under a given latency target, before you rent it." />
+  <meta name="twitter:image" content="https://reckonresearch.com/assets/berth-og.png" />
+
+  <!-- Theme color -->
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/berth.css" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://reckonresearch.com/#organization",
+        "name": "Reckon Research",
+        "url": "https://reckonresearch.com/"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://reckonresearch.com/berth/#webpage",
+        "url": "https://reckonresearch.com/berth/",
+        "name": "berth — Inference placement estimator | Reckon Research",
+        "description": "berth predicts what an inference workload costs and how fast it runs on any chip, under a given latency target, before you rent it.",
+        "isPartOf": { "@id": "https://reckonresearch.com/#website" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reckonresearch.com/" },
+            { "@type": "ListItem", "position": 2, "name": "berth", "item": "https://reckonresearch.com/berth/" }
+          ]
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://reckonresearch.com/berth/#software",
+        "name": "berth",
+        "description": "Placement primitives for inference engineers. Predicts cost and latency for LLM inference workloads across accelerators before you rent them.",
+        "url": "https://github.com/reckonresearch/berth",
+        "codeRepository": "https://github.com/reckonresearch/berth",
+        "license": "https://www.apache.org/licenses/LICENSE-2.0",
+        "programmingLanguage": "Python",
+        "creator": { "@id": "https://reckonresearch.com/#organization" }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Skip to content -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Sticky horizontal nav -->
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="Reckon Research home">Reckon Research</a>
+      <ul class="nav-links" role="list">
+        <li><a href="/berth/" class="active" aria-current="page">berth</a></li>
+        <li><a href="/validation/">Validation</a></li>
+        <li><a href="/writing/">Writing</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <button
+        class="nav-hamburger"
+        id="hamburger-btn"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mobile-nav-overlay"
+      >
+        <svg id="icon-menu" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <line x1="3" y1="6" x2="19" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg id="icon-close" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style="display:none">
+          <line x1="4" y1="4" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="4" x2="4" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay" aria-hidden="true">
+    <ul class="mobile-nav-links" role="list">
+      <li><a href="/berth/">berth</a></li>
+      <li><a href="/validation/">Validation</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Main content -->
+  <main id="main-content">
+
+    <!-- Hero: TM-style — white bg, centered viz image, headline + subtitle + CTAs below -->
+    <section class="berth-hero" aria-labelledby="berth-hero-heading">
+      <div class="berth-hero-viz" aria-hidden="true">
+        <img src="/assets/berth-viz.png" alt="" class="berth-viz-img" width="1536" height="1024" />
+      </div>
+      <div class="berth-hero-content">
+        <h1 id="berth-hero-heading" class="berth-hero-heading">berth is a placement estimator for <em>inference engineers</em></h1>
+        <p class="berth-hero-sub">Predict what a workload costs and how fast it runs on any chip, before you rent it. Find the cheapest placement that still meets your p99. Open source, physics based, validated on real hardware.</p>
+        <div class="berth-hero-links">
+          <a href="https://github.com/reckonresearch/berth" target="_blank" rel="noopener noreferrer" class="berth-btn berth-btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
+          <a href="https://docs.reckonresearch.com" target="_blank" rel="noopener noreferrer" class="berth-btn berth-btn-secondary">
+            Docs
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true" style="margin-left:4px">
+              <path d="M4 2H2a1 1 0 00-1 1v6a1 1 0 001 1h6a1 1 0 001-1V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M6.5 1.5h3v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="9.5" y1="1.5" x2="5" y2="7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content sections -->
+    <div class="page-wrap">
+
+      <!-- 01 The thesis -->
+      <section class="section fade-section" aria-labelledby="thesis-heading">
+        <span class="section-label" aria-hidden="true">01</span>
+        <h2 id="thesis-heading">The placement premium</h2>
+        <div class="body-text">
+          <p>The same workload can cost multiples more on one chip than another. And the premium is not a constant: it moves with the model, the context length, the batch size, and the latency target. That variance is the reason berth exists. Not a lookup table, but an estimator you run per workload, across every chip and provider you could place it on.</p>
+          <p>Here is one placement we measured end to end. For Llama-3-8B decode, an L40S is 1.6x cheaper than an H100 PCIe at matched concurrency. The H100 is faster, but if your p99 target does not require that speed, you are paying 1.6x for headroom you will never use.</p>
+        </div>
+
+        <div class="berth-table-wrap">
+          <table class="berth-table" aria-label="Placement cost comparison: L40S vs H100 PCIe, Llama-3-8B">
+            <caption class="berth-table-caption">Llama-3-8B decode, $/Mtok, list prices</caption>
+            <thead>
+              <tr>
+                <th scope="col">Concurrency</th>
+                <th scope="col">L40S $/Mtok</th>
+                <th scope="col">H100 PCIe $/Mtok</th>
+                <th scope="col">Premium of pricier choice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>batch 1</td>
+                <td>6.07</td>
+                <td>9.91</td>
+                <td class="premium-cell">1.63x</td>
+              </tr>
+              <tr>
+                <td>batch 8</td>
+                <td>0.885</td>
+                <td>1.40</td>
+                <td class="premium-cell">1.59x</td>
+              </tr>
+              <tr>
+                <td>batch 32</td>
+                <td>0.317</td>
+                <td>0.535</td>
+                <td class="premium-cell">1.69x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <aside class="berth-condition" aria-label="Measurement conditions">
+          <p>Measured, 60 traces per card, Llama-3-8B, bf16, vLLM. Compared at matched concurrency, not at matched latency: tighten the per-token deadline far enough and the cheaper card stops being feasible at all, at which point its cost per unit of compliant work is not low, it is undefined. That inversion is what an estimator exists to catch. One workload, two chips, decode and cost driven, list prices. More silicon and models are being measured now, each ships with its raw traces.</p>
+        </aside>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- 02 Physics -->
+      <section class="section fade-section" aria-labelledby="physics-heading">
+        <span class="section-label" aria-hidden="true">02</span>
+        <h2 id="physics-heading">Physics, not a black box</h2>
+        <div class="body-text">
+          <p>Every estimate is a closed-form roofline you can audit by hand. Decode is a race between compute and memory bandwidth. Prefill is compute plus a fixed scheduling floor. Concurrency is serial batch admission. No learned model stands between you and the number, and every prediction ships with the term that produced it.</p>
+          <p>On real silicon it holds: decode latency predicted to 4.2 percent on an H100 PCIe and 10.6 percent on an L40S, using spec-sheet priors with no tuning, against a 15 percent gate published before the first run.</p>
+        </div>
+        <div class="berth-validation-link">
+          <a href="/validation/" class="berth-inline-link">
+            Full validation results, including what failed
+            <svg class="ext-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M5 2.5H3a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M8 1.5h4.5v4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12.5" y1="1.5" x2="6" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- 03 Estimate / Install -->
+      <section class="section fade-section" aria-labelledby="estimate-heading">
+        <span class="section-label" aria-hidden="true">03</span>
+        <h2 id="estimate-heading">Estimate</h2>
+        <div class="body-text">
+          <p>You describe a workload; berth returns dollars per million tokens, time to first token, time per output token, and the placement premium: how much you would save on the cheapest silicon that still meets your p99.</p>
+        </div>
+
+        <div class="install-group">
+          <div class="install-header">
+            <span class="install-label">Install and run</span>
+            <button class="copy-btn" aria-label="Copy install and estimate command" data-copy="pip install berth-placement&#10;berth estimate --model llama3-8b --batch 32">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <rect x="4" y="1" width="8" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M1 4h2M1 4v7a1 1 0 001 1h6v-2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              <span class="copy-label">copy</span>
+            </button>
+          </div>
+          <code class="terminal-block" aria-label="Install berth-placement and run estimate">pip install berth-placement
+berth estimate --model llama3-8b --batch 32</code>
+        </div>
+
+        <div class="berth-note body-text">
+          <p>The distribution is <code class="inline-code">berth-placement</code>; the command is <code class="inline-code">berth</code>. Every line of output is tagged <code class="inline-code">MEASURED</code> or <code class="inline-code">prior</code>, so a prediction is never mistaken for an observation.</p>
+          <p>Apache-2.0. The core is standard-library Python. Nothing leaves your machine unless you choose to send a trace.</p>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- 04 sounding -->
+      <section class="section fade-section" aria-labelledby="sounding-heading">
+        <span class="section-label" aria-hidden="true">04</span>
+        <h2 id="sounding-heading">sounding: check the estimate against your own hardware</h2>
+        <span class="berth-subtitle">The measurement harness that produced the validation data</span>
+        <div class="body-text">
+          <p>berth is an estimator. It predicts from a model, and an estimate you cannot check is just an assertion. So berth ships <code class="inline-code">sounding</code>, the same measurement harness that produced its own validation data. You use the estimator; the harness is how we earned your trust in it.</p>
+          <p><code class="inline-code">sounding</code> drives an OpenAI-compatible completion server, vLLM or SGLang, with streaming requests across a grid of batch sizes, prompt lengths and output lengths, and records time to first token and time per output token per cell. Standard-library Python, so the box you rent needs nothing beyond a Python interpreter and a running model server.</p>
+        </div>
+
+        <div class="install-group">
+          <div class="install-header">
+            <span class="install-label">Run sounding</span>
+            <button class="copy-btn" aria-label="Copy sounding command" data-copy="python -m bench.sounding --base-url http://localhost:8000 \&#10;    --silicon h100-pcie --model llama3-8b \&#10;    --model-id meta-llama/Meta-Llama-3-8B --out traces.jsonl&#10;&#10;python -m bench.fit_overhead traces.jsonl&#10;python -m bench.validate     traces.jsonl --prefill-overhead-ms &lt;fitted&gt;">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <rect x="4" y="1" width="8" height="9" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M1 4h2M1 4v7a1 1 0 001 1h6v-2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              <span class="copy-label">copy</span>
+            </button>
+          </div>
+          <code class="terminal-block" aria-label="sounding measurement commands">python -m bench.sounding --base-url http://localhost:8000 \
+    --silicon h100-pcie --model llama3-8b \
+    --model-id meta-llama/Meta-Llama-3-8B --out traces.jsonl
+
+python -m bench.fit_overhead traces.jsonl
+python -m bench.validate     traces.jsonl --prefill-overhead-ms &lt;fitted&gt;</code>
+        </div>
+
+        <div class="body-text" style="margin-top:1.5rem;">
+          <p>The fixed prefill floor is a property of one accelerator, driver, server and config, and is not predictable from a spec sheet: it measured 74.6 ms on the L40S and 54.6 ms on the H100 PCIe. Silicon profiles ship 0.0 and every run fits its own. Do not carry someone else's.</p>
+          <p>No GPU handy? <code class="inline-code">--mock</code> runs the whole path from sweep to error report against the analytical model plus noise. Mock traces are stamped as such and can never enter the corpus.</p>
+        </div>
+
+        <div class="berth-provenance body-text">
+          <p>Every record carries <code class="inline-code">source</code>, either <code class="inline-code">measured</code> or <code class="inline-code">mock</code>, written by the harness. A mixed file is refused, and CI rejects any contributed trace that cannot prove which it is. A mock trace and a hardware trace are otherwise indistinguishable on disk, and the corpus is worth exactly as much as that distinction.</p>
+        </div>
+
+        <div class="berth-validation-link">
+          <a href="https://docs.reckonresearch.com/verify-and-contribute" target="_blank" rel="noopener noreferrer" class="berth-inline-link">
+            Full verify-and-contribute loop in the docs
+            <svg class="ext-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M5 2.5H3a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M8 1.5h4.5v4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12.5" y1="1.5" x2="6" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- 05 Check us -->
+      <section class="section fade-section" aria-labelledby="check-heading">
+        <span class="section-label" aria-hidden="true">05</span>
+        <h2 id="check-heading">Check us with data</h2>
+        <div class="body-text">
+          <p>Profile one real workload. If berth's number is useful, run a sounding and send the anonymised trace so the public estimate gets more accurate for everyone serving that workload shape. Disputes that arrive with traces attached outrank everything else.</p>
+          <p class="pull-quote">The corpus is worth exactly as much as the provenance behind it.</p>
+        </div>
+      </section>
+
+    </div><!-- /page-wrap -->
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <p class="footer-copy">&#169; 2026 Reckon Research</p>
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/validation/">Validation</a></li>
+          <li><a href="/writing/">Writing</a></li>
+          <li><a href="https://github.com/reckonresearch/berth" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="mailto:hello@reckonresearch.com">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="/js/site.js"></script>
+</body>
+</html>
