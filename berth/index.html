@@ -303,6 +303,8 @@ python -m bench.validate     traces.jsonl --prefill-overhead-ms &lt;fitted&gt;</
         </div>
 
         <div class="body-text" style="margin-top:1.5rem;">
+          <p>One run measures one accelerator against one model: ninety cells across five batch sizes, three prompt lengths and two output lengths, in randomized order so thermal drift does not confound the sweep. Roughly an hour on a rented box, a few dollars of GPU.</p>
+          <p>Add a card by running it again there and passing both files to <code class="inline-code">validate</code>. Cells accumulate, and that is how the L40S and H100 PCIe comparison above was built.</p>
           <p>The fixed prefill floor is a property of one accelerator, driver, server and config, and is not predictable from a spec sheet: it measured 74.6 ms on the L40S and 54.6 ms on the H100 PCIe. Silicon profiles ship 0.0 and every run fits its own. Do not carry someone else's.</p>
           <p>No GPU handy? <code class="inline-code">--mock</code> runs the whole path from sweep to error report against the analytical model plus noise. Mock traces are stamped as such and can never enter the corpus.</p>
         </div>
@@ -332,6 +334,19 @@ python -m bench.validate     traces.jsonl --prefill-overhead-ms &lt;fitted&gt;</
         <div class="body-text">
           <p>Profile one real workload. If berth's number is useful, run a sounding and send the anonymized trace so the public estimate gets more accurate for everyone serving that workload shape. Disputes that arrive with traces attached outrank everything else.</p>
           <p class="pull-quote">The corpus is worth exactly as much as the provenance behind it.</p>
+        </div>
+      </section>
+
+      <hr class="section-divider" />
+
+      <!-- 06 Every buildout gets a meter -->
+      <section class="section fade-section" aria-labelledby="meter-heading">
+        <span class="section-label" aria-hidden="true">06</span>
+        <h2 id="meter-heading">Every buildout gets a meter</h2>
+        <div class="body-text">
+          <p>Compute is bought by the GPU-hour and consumed as work under a deadline. No standard unit bridges the two, so nobody can say what a token costs, which is why depreciation schedules blur, why circular financing is unfalsifiable, and why the bubble argument compares capital expenditure in dollars against demand in vibes.</p>
+          <p>Every general-purpose infrastructure has crossed this point, and each one resolved it the same way. Railways got a clearing house. Power got a kilowatt-hour. Freight got a box. Money got interchange. Packets got a protocol. In each case the physical layer was necessary, competitive and margin-poor, and the layer that measured and routed was singular, standard and margin-rich.</p>
+          <p class="pull-quote">berth is the instrument. What it measures is the unit.</p>
         </div>
       </section>
 
