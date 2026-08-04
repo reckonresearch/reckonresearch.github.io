@@ -239,3 +239,407 @@
   width: 100%;
   height: auto;
 }
+/* ===========================================================================
+   Placement index. Append to css/berth.css.
+
+   Design intent: the page has to survive being screenshotted by someone who
+   does not read the copy. That means the reordering has to be legible, the
+   provenance has to be visible at a glance, and infeasible placements have to
+   look excluded rather than merely last.
+   =========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- controls ---------------------------------------------------------- */
+
+.idx-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem 2rem;
+  margin-top: 1.25rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+}
+
+.idx-ctl label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  margin-bottom: 0.6rem;
+}
+
+.idx-ctl output {
+  float: right;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.idx-ctl select,
+.idx-ctl input[type="range"] {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+}
+
+.idx-ctl select {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--fg);
+}
+
+.idx-ctl input[type="range"] {
+  accent-color: #102147;
+  cursor: pointer;
+}
+
+/* ---- headline ---------------------------------------------------------- */
+
+.idx-callout {
+  margin-top: 1.75rem;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid #102147;
+  background: #10214708;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--fg);
+}
+
+.idx-callout.warn {
+  border-left-color: #8a4100;
+  background: #b4540010;
+}
+
+/* ---- table ------------------------------------------------------------- */
+
+.idx-table td.num,
+.idx-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.idx-table td.rank {
+  color: var(--fg-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The row order changes as the controls move. Without a transition the table
+   appears to flicker and the reordering, which is the entire point, reads as
+   a glitch rather than a result. */
+.idx-row {
+  transition: background-color 140ms ease;
+}
+
+.idx-row:hover {
+  background: #10214706;
+}
+
+/* Infeasible placements are shown, not hidden: a reader needs to see that the
+   cheap chip is absent from the ranking because it cannot do the job, not
+   because it was quietly filtered out. */
+.idx-infeasible td {
+  opacity: 0.45;
+}
+
+.idx-infeasible td.num {
+  font-style: italic;
+}
+
+/* ---- badges ------------------------------------------------------------ */
+
+.idx-sub {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.6;
+}
+
+.idx {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* Measured and inside the published gate. */
+.idx-val    { background: #10214710; color: #102147; border: 1px solid #10214730; }
+/* Traces exist; gate missed or a question is open. Deliberately not red: a
+   failed cell that publishes its traces is worth more than an absent one. */
+.idx-meas   { background: #b4540010; color: #8a4100; border: 1px solid #b4540030; }
+/* Spec sheet arithmetic, unverified. */
+.idx-prior  { background: transparent; color: var(--fg-subtle);
+              border: 1px solid var(--divider); font-weight: 500; }
+/* Run scheduled. */
+.idx-pend   { background: transparent; color: var(--fg-subtle);
+              border: 1px dashed var(--divider); font-weight: 500; }
+/* Nobody has run it. Quiet on purpose: this is most of the corpus grid and it
+   should read as an invitation rather than a wall of failure. */
+.idx-open   { background: transparent; color: var(--fg-subtle); border: none;
+              font-weight: 400; letter-spacing: 0.04em; opacity: 0.45; }
+.idx-infeas { background: transparent; color: #8a4100;
+              border: 1px solid #b4540030; font-weight: 500; }
+
+.idx-note {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--fg-subtle);
+}
+
+.idx-fine {
+  font-size: 14px;
+  color: var(--fg-subtle);
+}
+
+.berth-table tbody th[scope="row"] {
+  text-align: left;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem 0.75rem 0;
+  border-bottom: 1px solid var(--divider);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .idx-controls { gap: 1.25rem; padding: 1.25rem 0; }
+  .idx-callout  { font-size: 14.5px; }
+}
+
+/* Opt-in to unmeasured silicon. Deliberately below the table rather than
+   beside the controls: the default view should be complete on its own, and
+   the toggle should read as an escalation rather than a filter. */
+.idx-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--divider);
+}
+
+.idx-toggle input { width: 16px; height: 16px; margin: 0; }
+.idx-toggle label { font-size: 14px; color: var(--fg-subtle); cursor: pointer; }
+
+.idx-more td {
+  padding-top: 1.25rem;
+  font-size: 13px;
+  color: var(--fg-subtle);
+}
+
+/* ---- The PI: byline, presets, vendor labels ---------------------------- */
+
+.idx-byline {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--fg-subtle);
+  margin: 0.4rem 0 0;
+}
+
+.idx-pi {
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: 0.12em;
+}
+
+/* Presets carry the only categorical colour on the page. The ranking table
+   stays monochrome: colour there would be decoration, and the two provenance
+   badges are the only semantic colour that earns its place. */
+.idx-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  /* Tight to the paragraph above it. The prose ends by telling the reader the
+     controls are how they check the claim, so the controls should read as the
+     next beat of that sentence rather than as a separate block. */
+  margin-top: 1rem;
+}
+
+.idx-preset {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--divider);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg-subtle);
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+
+.idx-preset:hover { border-color: var(--fg-subtle); color: var(--fg); }
+
+.idx-preset.on {
+  border-color: #102147;
+  background: #10214710;
+  color: #102147;
+  font-weight: 500;
+}
+
+.idx-preset[data-w="voice"].on { border-color: #1d6b63; background: #1d6b6310; color: #14504a; }
+.idx-preset[data-w="code"].on  { border-color: #4a3f7a; background: #4a3f7a10; color: #382f5c; }
+.idx-preset[data-w="rag"].on   { border-color: #8a4100; background: #8a410010; color: #6b3200; }
+.idx-preset[data-w="agentic"].on { border-color: #7a3b52; background: #7a3b5210; color: #5c2c3e; }
+.idx-preset[data-w="batch"].on { border-color: #2c5a2c; background: #2c5a2c10; color: #204220; }
+
+.idx-preset-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--fg-subtle);
+  margin: 1rem 0 0;
+  min-height: 2.4em;
+}
+
+/* Vendor under the part number. A reader who has only rented an H100 should
+   not have to guess who makes an L40S. */
+.idx-vendor {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+/* Committed next, not yet dispatched. Distinct from `running`, which means an
+   operator has it now. Collapsing the two would overstate work in progress. */
+.idx-queue {
+  background: transparent;
+  color: var(--fg-subtle);
+  border: 1px solid var(--divider);
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.idx-corpus { font-size: 12.5px; }
+.idx-corpus td, .idx-corpus th { padding: 0.6rem 0.75rem 0.6rem 0; }
+.idx-corpus thead th { font-size: 10px; }
+
+/* ---- Confidence band on the price -------------------------------------- */
+
+/* A measured cell carries its published error. A prior carries none, because
+   it has no bound: 40.8 percent has been observed on one. Writing "unbounded"
+   rather than leaving it blank is the difference between a reader inferring
+   the number is exact and being told it is not. */
+.idx-ci {
+  display: block;
+  font-size: 10.5px;
+  color: var(--fg-subtle);
+  font-weight: 400;
+  margin-top: 0.1rem;
+  letter-spacing: 0.02em;
+}
+
+.idx-ci-none { font-style: italic; opacity: 0.7; }
+
+/* ---- Workload overview cards ------------------------------------------- */
+
+.idx-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.idx-ov-card {
+  border: 1px solid var(--divider);
+  border-radius: 6px;
+  padding: 1rem 1.1rem 0.85rem;
+}
+
+.idx-ov-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.85rem;
+  color: var(--fg);
+}
+
+.idx-ov-card[data-w="voice"] h3 { color: #14504a; }
+.idx-ov-card[data-w="code"]  h3 { color: #382f5c; }
+.idx-ov-card[data-w="rag"]   h3 { color: #6b3200; }
+.idx-ov-card[data-w="agentic"] h3 { color: #5c2c3e; }
+.idx-ov-card[data-w="batch"] h3 { color: #204220; }
+
+.idx-ov-row {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr auto auto;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--divider);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+}
+
+.idx-ov-row:first-of-type { border-top: none; }
+.idx-ov-rank { color: var(--fg-subtle); font-variant-numeric: tabular-nums; }
+.idx-ov-name { font-weight: 500; line-height: 1.2; }
+.idx-ov-name .idx-vendor { margin-top: 0; font-size: 9.5px; }
+.idx-ov-cost { font-variant-numeric: tabular-nums; }
+
+.idx-ov-card .idx { font-size: 9.5px; padding: 0.1rem 0.3rem; }
+
+.idx-ov-link {
+  margin-top: 0.75rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--fg-subtle);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.idx-ov-link:hover { color: var(--fg); }
+
+/* ---- Rank matrix -------------------------------------------------------- */
+
+/* The whole argument of this page in one table: the same eight placements,
+   four questions, four different orderings. A reader who never touches a
+   control should still leave having seen it. */
+.idx-matrix { font-size: 13px; }
+.idx-matrix td.num, .idx-matrix th.num { text-align: right; }
+.idx-matrix td.num { font-variant-numeric: tabular-nums; color: var(--fg-subtle); }
+.idx-matrix td.idx-first { color: var(--fg); font-weight: 600; }
+.idx-matrix thead th { font-size: 10px; }
+
+.idx-h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+  margin: 0 0 0.75rem;
+}

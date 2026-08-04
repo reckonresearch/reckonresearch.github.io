@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The placement index | What a workload costs on every chip | Reckon Research</title>
+  <meta name="description" content="Every other leaderboard ranks models. This ranks placements: the same workload on different silicon, priced per million tokens delivered inside its latency target." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://reckonresearch.com/index/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://reckonresearch.com/index/" />
+  <meta property="og:title" content="The placement index" />
+  <meta property="og:description" content="Every other leaderboard ranks models. This ranks placements: the same workload on different silicon, priced per million tokens delivered inside its latency target." />
+  <meta property="og:image" content="https://reckonresearch.com/assets/berth-og.png" />
+  <meta property="og:site_name" content="Reckon Research" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The placement index" />
+  <meta name="twitter:description" content="Every other leaderboard ranks models. This ranks placements: the same workload on different silicon, priced per million tokens delivered inside its latency target." />
+  <meta name="twitter:image" content="https://reckonresearch.com/assets/berth-og.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/berth.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://reckonresearch.com/#organization", "name": "Reckon Research", "url": "https://reckonresearch.com/" },
+      {
+        "@type": "WebPage",
+        "@id": "https://reckonresearch.com/validation/#webpage",
+        "url": "https://reckonresearch.com/validation/",
+        "name": "Validation | Hardware results for berth | Reckon Research",
+        "description": "Full validation results for berth on L40S and H100 PCIe, including what failed.",
+        "isPartOf": { "@id": "https://reckonresearch.com/#website" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reckonresearch.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Validation", "item": "https://reckonresearch.com/validation/" }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav class="site-nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="Reckon Research home">Reckon Research</a>
+      <ul class="nav-links" role="list">
+        <li><a href="/berth/">berth</a></li>
+        <li><a href="/index/" class="active" aria-current="page">Index</a></li>
+        <li><a href="/validation/">Validation</a></li>
+        <li><a href="/writing/">Writing</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="https://docs.reckonresearch.com" target="_blank" rel="noopener noreferrer">Docs</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav-overlay">
+        <svg id="icon-menu" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <line x1="3" y1="6" x2="19" y2="6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="11" x2="19" y2="11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="3" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <svg id="icon-close" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true" style="display:none">
+          <line x1="4" y1="4" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18" y1="4" x2="4" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay" aria-hidden="true">
+    <ul class="mobile-nav-links" role="list">
+      <li><a href="/berth/">berth</a></li>
+      <li><a href="/index/">Index</a></li>
+        <li><a href="/validation/">Validation</a></li>
+      <li><a href="/writing/">Writing</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="https://docs.reckonresearch.com" target="_blank" rel="noopener noreferrer">Docs</a></li>
+        <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </div>
+
+  <main id="main-content" class="page-wrap">
+
+  <!-- ============================================================
+       Hero. States the argument the controls are about to prove.
+       ============================================================ -->
+  <section class="section fade-section" aria-labelledby="idx-heading">
+    <h1 id="idx-heading">The Placement Index</h1>
+    <p class="idx-byline"><span class="idx-pi">The PI</span> by Reckon Research</p>
+    <span class="berth-subtitle">What a workload costs, on every chip, right now</span>
+    <div class="body-text">
+      <p>Every other leaderboard ranks models. This ranks <em>placements</em>: the same workload on different silicon, priced per million tokens delivered inside its latency target.</p>
+      <p><strong>The premier chip is the wrong chip.</strong> An H100 PCIe ranks sixth of nine here on cost per delivered token, and the gap is not small. Price alone gives a fairly stable ordering. Feasibility does not: tighten the first-token budget and placements begin failing it outright, and the cheapest chip that can still do the job is a different chip. A placement that misses the deadline has no cost per compliant token, so ranking on price alone answers a question nobody is asking.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Controls. Deliberately few. Every axis here is one the physics
+       actually responds to; adding filters that do not change the
+       answer would make the page feel richer and mean less.
+       ============================================================ -->
+  <section class="section fade-section" aria-labelledby="ctl-heading">
+    <h2 id="ctl-heading" class="visually-hidden">Workload controls</h2>
+
+
+    <div class="idx-presets" role="group" aria-label="Workload presets">
+      <button type="button" class="idx-preset" data-w="voice">Voice agent</button>
+      <button type="button" class="idx-preset" data-w="code">Code completion</button>
+      <button type="button" class="idx-preset" data-w="rag">Long-context RAG</button>
+      <button type="button" class="idx-preset" data-w="agentic">Agentic long context</button>
+      <button type="button" class="idx-preset" data-w="batch">Batch embedding</button>
+      <button type="button" class="idx-preset" data-w="custom">Custom</button>
+    </div>
+    <div class="idx-controls" role="group" aria-label="Workload configuration">
+      <div class="idx-ctl">
+        <label for="ctl-model">Model</label>
+        <select id="ctl-model"></select>
+      </div>
+      <div class="idx-ctl">
+        <label for="ctl-batch">Concurrency <output id="out-batch"></output></label>
+        <input type="range" id="ctl-batch" min="0" max="5" step="1" value="4">
+      </div>
+      <div class="idx-ctl">
+        <label for="ctl-prompt">Prompt tokens <output id="out-prompt"></output></label>
+        <input type="range" id="ctl-prompt" min="0" max="3" step="1" value="1">
+      </div>
+      <div class="idx-ctl">
+        <label for="ctl-output">Output tokens <output id="out-output"></output></label>
+        <input type="range" id="ctl-output" min="0" max="2" step="1" value="1">
+      </div>
+      <div class="idx-ctl">
+        <label for="ctl-slo">p99 TTFT budget <output id="out-slo"></output></label>
+        <input type="range" id="ctl-slo" min="0" max="6" step="1" value="6">
+      </div>
+    </div>
+
+    <!-- The headline. Rewritten on every change; this is the moment the
+         page is built around. -->
+    <p class="idx-preset-note" id="preset-note"></p>
+    <div class="idx-callout" id="idx-callout" aria-live="polite"></div>
+  </section>
+
+  <!-- ============================================================
+       The table.
+       ============================================================ -->
+  <section class="section fade-section" aria-labelledby="tbl-heading">
+    <h2 id="tbl-heading" class="visually-hidden">Placement ranking</h2>
+    <div class="berth-table-wrap">
+      <table class="berth-table idx-table" aria-describedby="idx-callout">
+        <caption class="berth-table-caption" id="idx-caption"></caption>
+        <thead>
+          <tr>
+            <th scope="col" style="width:2.5rem;">#</th>
+            <th scope="col">Placement</th>
+            <th scope="col" class="num">$/Mtok</th>
+            <th scope="col" class="num">Premium</th>
+            <th scope="col" class="num">TTFT</th>
+            <th scope="col" class="num">TPOT</th>
+            <th scope="col" class="num">tok/s</th>
+            <th scope="col">Provenance</th>
+          </tr>
+        </thead>
+        <tbody id="idx-body"></tbody>
+      </table>
+    </div>
+
+    <div class="body-text" style="margin-top:1.5rem;">
+      <p class="idx-fine"><strong>Premium</strong> is the multiple over the cheapest placement that still meets the latency budget. A chip that cannot meet the budget has no cost per compliant token: not a high one, an undefined one, and it is marked infeasible rather than ranked.</p>
+      <p class="idx-fine"><strong>Provenance</strong> is the whole point. <span class="idx idx-val">MEASURED</span> means the estimate was checked against traces from that hardware and landed inside a 15 percent gate published before the run. <span class="idx idx-prior">prior</span> means spec sheet arithmetic, unverified. Measured cells have run at 4.2 to 10.6 percent error. A prior cell is unbounded, and one has been observed above 40 percent. We would rather show you which is which than average them into a single confident number.</p>
+      <p class="idx-fine">List prices, on-demand, single tenant, everything assumed available. Real placement is also constrained by quota, region, contract terms, reserved capacity and what a provider will actually hand you this week. Those move the ranking and none of them are modelled here. Every figure is produced by the same estimator the CLI ships, and you can reproduce any row with <code class="inline-code">berth estimate</code>.</p>
+      <p class="idx-fine"><strong>Why the ordering looks stable.</strong> Seven of the nine placements above carry spec-sheet priors, and spec sheets are smooth: compute and bandwidth are quoted as though they scale together, so a fleet of priors produces a tidy ranking. Measurement is what breaks it. An L40S fitted a bandwidth above its own microbenchmarked ceiling. The fixed prefill floor differs by 24 percent between two serving stacks on the same card. Mixture-of-experts decode moves roughly 1.6 times the bytes active parameters predict. None of that is on any datasheet, and every one of those was found by running the hardware rather than reading about it. The ranking above will get less tidy as the corpus fills, and that is the point of filling it.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       The corpus grid. What is measured and what is not.
+       ============================================================ -->
+  <section class="section fade-section" aria-labelledby="corpus-heading">
+    <h2 id="corpus-heading">The corpus behind it</h2>
+    <span class="berth-subtitle">3 of 72 cells measured</span>
+    <div class="body-text">
+      <p>A cell is one accelerator running one model under one serving stack. All 72 are below, measured or not, because a table showing only what has been done tells a reader nothing about what to trust.</p><p><strong>Validated</strong> is measured and inside the 15 percent gate published before the run. <strong>Measured</strong> means traces exist and a question is open, published regardless. <strong>Running</strong> is dispatched to an operator now. <strong>Queued</strong> is committed next. Everything else is open, and that is most of the table.</p>
+    </div>
+
+    <div class="berth-table-wrap" style="margin-top:1.5rem;">
+      <table class="berth-table idx-corpus" aria-label="Corpus index: accelerators by model">
+            <caption class="berth-table-caption">bf16, vLLM unless noted</caption>
+            <thead>
+              <tr>
+                <th scope="col">Accelerator</th>
+                <th scope="col">Llama-3-8B<br><span class="idx-sub">dense</span></th>
+                <th scope="col">Llama-3-70B<br><span class="idx-sub">dense</span></th>
+                <th scope="col">Qwen3-30B-A3B<br><span class="idx-sub">MoE</span></th>
+                <th scope="col">Mixtral-8x7B<br><span class="idx-sub">MoE</span></th>
+                <th scope="col">DeepSeek-V2-Lite<br><span class="idx-sub">MLA</span></th>
+                <th scope="col">DeepSeek-V3<br><span class="idx-sub">MoE</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">L40S<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-val">VALIDATED</span><span class="idx-note">60 traces, 10.6% TPOT<br>SGLang cell running</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-queue">queued</span></td><td><span class="idx idx-queue">queued</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">H100 PCIe<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-val">VALIDATED</span><span class="idx-note">60 traces, 4.2% TPOT</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-queue">queued</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">H100 SXM<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-queue">queued</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">H200 SXM<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">A100 80GB<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-pend">running</span><span class="idx-note">dense control, running</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-meas">MEASURED</span><span class="idx-note">60 traces published<br>control run dispatched</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">B200<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">GB200 NVL<span class="idx-vendor">NVIDIA</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">MI300X<span class="idx-vendor">AMD</span></th><td><span class="idx idx-queue">queued</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">MI325X<span class="idx-vendor">AMD</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">TPU v5e<span class="idx-vendor">Google</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">TPU v6e<span class="idx-vendor">Google</span></th><td><span class="idx idx-queue">queued</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+              <tr><th scope="row">Trainium2<span class="idx-vendor">AWS</span></th><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td><td><span class="idx idx-open">open</span></td></tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="body-text" style="margin-top:1.5rem;">
+      <p>Measured cells have predicted decode latency to between 4.2 and 10.6 percent using untuned priors, against a 15 percent gate published before the first run. Every trace behind them is downloadable, and every open question has a pre-registered run against it.</p>
+      <p>If your workload is a blank square, that is the ask. One run is ninety cells: roughly an hour on a rented box, a few dollars of GPU, and nothing leaves your cluster unless you choose to send the trace.</p>
+    </div>
+
+    <div class="body-text" style="margin-top:2rem;">
+      <h3 class="idx-h3">What has to hold for any of this to generalise</h3>
+      <p>Four axes, and the honest status of each. The roofline is one functional form with constants recovered from a microbenchmark that costs minutes, so the expensive question is whether the form transfers, not whether the constants do.</p>
+    </div>
+
+    <div class="berth-table-wrap" style="margin-top:1.25rem;">
+      <table class="berth-table" aria-label="Generalisation status by axis">
+        <thead>
+          <tr><th scope="col">Axis</th><th scope="col">Status</th><th scope="col">Evidence</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Memory technology</th>
+            <td><span class="idx idx-val">holds</span></td>
+            <td>An untuned prior predicted decode within 1 and 6 percent on GDDR6 and HBM2e, on cards it had never seen.</td></tr>
+          <tr><th scope="row">Serving stack</th>
+            <td><span class="idx idx-val">holds</span></td>
+            <td>Decode 0.854 under SGLang against 0.850 under vLLM, same card, same model. Serial prefill 1.01 against 1.09.</td></tr>
+          <tr><th scope="row">Architecture family</th>
+            <td><span class="idx idx-meas">open</span></td>
+            <td>The first mixture-of-experts cell missed the gate. Decode appears to move about 1.6 times the bytes active parameters predict; a dense control on the same box is pre-registered.</td></tr>
+          <tr><th scope="row">Vendor</th>
+            <td><span class="idx idx-queue">untested</span></td>
+            <td>Every measured cell is NVIDIA. AMD and TPU carry priors, and one of them currently tops the ranking above.</td></tr>
+          <tr><th scope="row">Quantisation</th>
+            <td><span class="idx idx-queue">untested</span></td>
+            <td>fp8 and fp4 paths exist in the code and in the trace schema. No cell has been run at anything but bf16.</td></tr>
+          <tr><th scope="row">Locality and availability</th>
+            <td><span class="idx idx-open">not modelled</span></td>
+            <td>Region, quota, reserved capacity, contract terms and interconnect topology. All of these move a real placement decision and none are in the estimate.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="body-text" style="margin-top:1.5rem;">
+      <p>Where the closed form stops being the right object is a question with an answer, and finding it is part of the work rather than an embarrassment: disaggregated prefill and decode, chunked prefill, speculative decoding, multi-node interconnect. At some boundary arithmetic gives way to a learned surrogate. Knowing precisely where that boundary sits is itself the contribution, because a surrogate trained without it is a black box and one trained with it tells you which regions need learning and which are simply arithmetic.</p>
+    </div>
+  </section>
+
+
+  <section class="section fade-section" aria-labelledby="prior-heading">
+    <h2 id="prior-heading" class="visually-hidden">Unmeasured silicon</h2>
+    <div class="idx-toggle">
+      <input type="checkbox" id="ctl-prior" checked>
+      <label for="ctl-prior">Include unmeasured silicon</label>
+    </div>
+    <p class="idx-fine" id="prior-warn">Rows marked <span class="idx idx-prior">prior</span> are spec-sheet arithmetic on hardware we have not yet run. They are shown because a two-entry fleet answers nobody's question, and marked because a number you cannot check is not a measurement. Measured cells have landed between 4.2 and 10.6 percent error against a gate published before the run. Untick to see only those.</p>
+  </section>
+
+
+  <section class="section fade-section" aria-labelledby="ov-heading">
+    <h2 id="ov-heading">By workload class</h2>
+    <span class="berth-subtitle">The same fleet, four questions</span>
+    <div class="body-text">
+      <p>Each block below is the same eight placements asked a different question. The orderings are not the same, and that difference is the reason this page exists.</p>
+    </div>
+    <div class="idx-overview" id="idx-overview"></div>
+  </section>
+
+  <section class="section fade-section" aria-labelledby="mx-heading">
+    <h2 id="mx-heading">Where each chip ranks</h2>
+    <span class="berth-subtitle">One row per accelerator, one column per workload</span>
+    <div class="berth-table-wrap">
+      <table class="berth-table idx-matrix" id="idx-matrix" aria-label="Rank of each accelerator by workload class"></table>
+    </div>
+    <div class="body-text" style="margin-top:1.25rem;">
+      <p class="idx-fine">Rank by cost per million tokens delivered inside that workload's latency budget. A dash means the placement cannot meet the budget at all, in which case its cost per compliant token is not high, it is undefined.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var DATA = null;
+  // TTFT budgets in ms. The last entry is "no budget", which is how most
+  // published price comparisons are implicitly made.
+  var SLOS = [100, 200, 500, 1000, 2000, 5000, null];
+
+  var el = {
+    model:  document.getElementById("ctl-model"),
+    batch:  document.getElementById("ctl-batch"),
+    prompt: document.getElementById("ctl-prompt"),
+    output: document.getElementById("ctl-output"),
+    slo:    document.getElementById("ctl-slo"),
+    oBatch: document.getElementById("out-batch"),
+    oPrompt:document.getElementById("out-prompt"),
+    oOutput:document.getElementById("out-output"),
+    oSlo:   document.getElementById("out-slo"),
+    body:   document.getElementById("idx-body"),
+    caption:document.getElementById("idx-caption"),
+    callout:document.getElementById("idx-callout")
+  };
+
+  function fmtTokens(n) {
+    return n >= 1024 ? (n / 1024) + "K" : String(n);
+  }
+
+  // Vendor is information, not branding. Without it a reader who has only
+  // ever rented an H100 can misattribute an L40S or an MI300X.
+  var VENDOR = {
+    "h100-sxm": "NVIDIA", "h100-pcie": "NVIDIA", "h200-sxm": "NVIDIA",
+    "b200": "NVIDIA", "a100-80g": "NVIDIA", "l40s": "NVIDIA",
+    "mi300x": "AMD", "mi325x": "AMD",
+    "tpu-v5e": "Google", "tpu-v6e": "Google",
+    "cpu-spr": "Intel"
+  };
+  var DISPLAY = {
+    "h100-sxm": "H100 SXM", "h100-pcie": "H100 PCIe", "h200-sxm": "H200 SXM",
+    "b200": "B200", "a100-80g": "A100 80GB", "l40s": "L40S",
+    "mi300x": "MI300X", "mi325x": "MI325X",
+    "tpu-v5e": "TPU v5e", "tpu-v6e": "TPU v6e",
+    "cpu-spr": "Xeon Sapphire Rapids"
+  };
+  function label(k) {
+    return DISPLAY[k] || k.replace(/-/g, " ").toUpperCase();
+  }
+  function vendor(k) {
+    return VENDOR[k] || "";
+  }
+
+  // Published prediction error per measured cell, from the P0 validation set.
+  // Shown as a band on the price so a reader sees how much the number can move
+  // rather than only whether it was measured. A prior has no band because it
+  // has no bound: 40.8 percent has been observed on one, which is why the
+  // absence is written out rather than left blank.
+  var ERR = { "l40s": 10.6, "h100-pcie": 4.2 };
+
+  // Budgets are set where they bind. An earlier version used 1 to 5 seconds,
+  // all of which sit above the slowest placement in the fleet, so nothing was
+  // ever excluded and every class ranked identically on price alone.
+  var PRESETS = {
+    voice:   { batch: 8,  prompt: 512,   output: 128, slo: 1,
+               note: "Realtime speech, 200 ms to first token. Short prompts, "
+                   + "so most of the fleet clears the budget and price decides." },
+    code:    { batch: 32, prompt: 2048,  output: 16,  slo: 2,
+               note: "Long context, tiny generation. The node spends its "
+                   + "capacity on prefill and emits almost nothing sellable." },
+    rag:     { batch: 16, prompt: 8192,  output: 512, slo: 1,
+               note: "Retrieval with a 200 ms first-token budget. Eight of "
+                   + "nine placements cannot meet it, and the one that can is "
+                   + "not the one that is cheapest without it." },
+    agentic: { batch: 32, prompt: 32768, output: 16,  slo: 3,
+               note: "Very long context under a one second budget. The "
+                   + "cheapest chip drops out and the ranking is not the same "
+                   + "one price alone would give." },
+    batch:   { batch: 64, prompt: 512,   output: 16,  slo: 6,
+               note: "No deadline. Loose SLOs have a different economic "
+                   + "capacity, and no metric in commercial use prices it." }
+  };
+
+  function render() {
+    if (!DATA) return;
+    var ax = DATA.axes;
+    var m = el.model.value;
+    var b = ax.batch[+el.batch.value];
+    var p = ax.prompt[+el.prompt.value];
+    var o = ax.output[+el.output.value];
+    var slo = SLOS[+el.slo.value];
+
+    el.oBatch.textContent  = b;
+    el.oPrompt.textContent = fmtTokens(p);
+    el.oOutput.textContent = fmtTokens(o);
+    el.oSlo.textContent    = slo === null ? "none" : slo + " ms";
+
+    var showPrior = document.getElementById("ctl-prior").checked;
+    document.getElementById("prior-warn").hidden = !showPrior;
+    var all = (DATA.grid[m + "|" + b + "|" + p + "|" + o] || []).slice();
+    var hidden = all.filter(function (r) { return !r.m; }).length;
+    // Default is measured only. A ranking of unverified arithmetic is the
+    // one artifact this lab cannot afford to have screenshotted, and a
+    // badge does not survive a screenshot. Opting in is an act the reader
+    // performs, which does.
+    var rows = showPrior ? all : all.filter(function (r) { return r.m; });
+
+    // A placement that misses the latency budget has no cost per compliant
+    // token. Marking it infeasible rather than ranking it cheaply is the
+    // difference between this table and a price sheet.
+    rows.forEach(function (r) {
+      // A null cost is an infeasible placement, encoded that way because
+      // Infinity is not valid JSON. Treat it as infeasible, never as cheap.
+      r.ok = r.f && r.c !== null && (slo === null || r.ttft <= slo);
+    });
+
+    var feasible = rows.filter(function (r) { return r.ok; });
+    feasible.sort(function (a, b2) { return a.c - b2.c; });
+    var infeasible = rows.filter(function (r) { return !r.ok; })
+                         .sort(function (a, b2) { return a.c - b2.c; });
+
+    var cheapest = feasible.length ? feasible[0] : null;
+
+    // Headline.
+    if (!cheapest) {
+      el.callout.className = "idx-callout warn";
+      el.callout.textContent =
+        "No " + (showPrior ? "" : "measured ") +
+        "placement meets a " + slo + " ms first-token budget " +
+        "for this workload. Cost per compliant token is not high here. It is " +
+        "undefined.";
+    } else {
+      var priciest = feasible[feasible.length - 1];
+      var mult = priciest.c / cheapest.c;
+      var premierNames = ["b200", "h100-sxm", "h200-sxm"];
+      var premier = feasible.filter(function (r) {
+        return premierNames.indexOf(r.s) !== -1;
+      }).sort(function (a, b2) { return a.c - b2.c; })[0];
+      var line = "<strong>" + label(cheapest.s) + "</strong> is the cheapest " +
+                 "placement that meets this target, at $" +
+                 cheapest.c.toFixed(3) + " per million tokens.";
+      if (premier && premier.s !== cheapest.s) {
+        line += " The premier chip in this fleet, " + label(premier.s) +
+                ", costs " + (premier.c / cheapest.c).toFixed(2) + "x more " +
+                "for the same delivered work.";
+      }
+      if (mult > 1.05) {
+        line += " Spread across feasible placements: <strong>" +
+                mult.toFixed(1) + "x</strong>.";
+      }
+      // The most prominent output on the page is the winner. If that winner is
+      // spec-sheet arithmetic on hardware nobody has run, saying so is not a
+      // caveat, it is the difference between this page and a price sheet.
+      if (!ERR[cheapest.s]) {
+        line += " <em>This placement has not been measured. The figure is "
+              + "spec-sheet arithmetic and its error is unbounded.</em>";
+      }
+      if (infeasible.length) {
+        line += " " + infeasible.length + " placement" +
+                (infeasible.length === 1 ? "" : "s") +
+                " cannot meet the budget at all.";
+      }
+      el.callout.className = "idx-callout";
+      el.callout.innerHTML = line;
+    }
+
+    el.caption.textContent =
+      m + ", concurrency " + b + ", " + fmtTokens(p) + " prompt, " +
+      fmtTokens(o) + " output" +
+      (slo === null ? ", no latency budget" : ", p99 TTFT under " + slo + " ms");
+
+    var html = "";
+    feasible.forEach(function (r, i) {
+      var prem = cheapest ? r.c / cheapest.c : 1;
+      html += '<tr class="idx-row">' +
+        '<td class="rank">' + (i + 1) + "</td>" +
+        "<td><strong>" + label(r.s) + "</strong>" +
+          '<span class="idx-vendor">' + vendor(r.s) +
+          (r.n > 1 ? " &middot; " + r.n + " devices" : "") + "</span>" +
+        "</td>" +
+        '<td class="num">$' + r.c.toFixed(3) +
+          (ERR[r.s] ? '<span class="idx-ci">&plusmn;' + ERR[r.s].toFixed(1) + "%</span>"
+                    : '<span class="idx-ci idx-ci-none">unbounded</span>') + "</td>" +
+        '<td class="num">' + (i === 0 ? "&mdash;" : prem.toFixed(2) + "x") + "</td>" +
+        '<td class="num">' + (r.ttft === null ? "&mdash;" : r.ttft.toFixed(0) + " ms") + " ms</td>" +
+        '<td class="num">' + (r.tpot === null ? "&mdash;" : r.tpot.toFixed(2) + " ms") + " ms</td>" +
+        '<td class="num">' + (r.tps === null ? "&mdash;" : r.tps.toFixed(0)) + "</td>" +
+        "<td>" + (r.m
+          ? '<span class="idx idx-val">MEASURED</span>'
+          : '<span class="idx idx-prior">prior</span>') + "</td>" +
+        "</tr>";
+    });
+    infeasible.forEach(function (r) {
+      html += '<tr class="idx-row idx-infeasible">' +
+        '<td class="rank">&mdash;</td>' +
+        "<td><strong>" + label(r.s) + "</strong>" +
+          '<span class="idx-vendor">' + vendor(r.s) + "</span></td>" +
+        '<td class="num">undefined</td>' +
+        '<td class="num">&mdash;</td>' +
+        '<td class="num">' + (r.ttft === null ? "&mdash;" : r.ttft.toFixed(0) + " ms") + " ms</td>" +
+        '<td class="num">' + (r.tpot === null ? "&mdash;" : r.tpot.toFixed(2) + " ms") + " ms</td>" +
+        '<td class="num">' + (r.tps === null ? "&mdash;" : r.tps.toFixed(0)) + "</td>" +
+        '<td><span class="idx idx-infeas">misses budget</span></td>' +
+        "</tr>";
+    });
+    if (!showPrior && hidden) {
+      html += '<tr class="idx-more"><td colspan="8">' + hidden +
+        " more placements in the fleet are unmeasured. Enable the toggle "
+        + "below to estimate them.</td></tr>";
+    }
+    el.body.innerHTML = html ||
+      '<tr><td colspan="8">No data for this configuration.</td></tr>';
+  }
+
+  ["model", "batch", "prompt", "output", "slo"].forEach(function (k) {
+    el[k].addEventListener("input", render);
+    el[k].addEventListener("change", render);
+  });
+  document.getElementById("ctl-prior").addEventListener("change", render);
+
+  function applyPreset(key) {
+    var btns = document.querySelectorAll(".idx-preset");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.toggle("on", btns[i].getAttribute("data-w") === key);
+      btns[i].setAttribute("aria-pressed",
+        btns[i].getAttribute("data-w") === key ? "true" : "false");
+    }
+    var note = document.getElementById("preset-note");
+    var p = PRESETS[key];
+    if (!p) { note.textContent = ""; return; }
+    note.textContent = p.note;
+    var ax = DATA.axes;
+    function nearest(arr, v) {
+      var bi = 0, bd = Infinity;
+      for (var i = 0; i < arr.length; i++) {
+        var dd = Math.abs(arr[i] - v);
+        if (dd < bd) { bd = dd; bi = i; }
+      }
+      return bi;
+    }
+    el.batch.value  = nearest(ax.batch, p.batch);
+    el.prompt.value = nearest(ax.prompt, p.prompt);
+    el.output.value = nearest(ax.output, p.output);
+    el.slo.value    = p.slo;
+    render();
+  }
+
+  // The overview and the matrix answer the same question the controls do,
+  // without requiring anyone to touch a control. A reader who never moves a
+  // slider should still leave knowing the ranking is not fixed.
+  function rankFor(key) {
+    var p = PRESETS[key];
+    var ax = DATA.axes;
+    function nearest(arr, v) {
+      var bi = 0, bd = Infinity;
+      for (var i = 0; i < arr.length; i++) {
+        var d = Math.abs(arr[i] - v);
+        if (d < bd) { bd = d; bi = i; }
+      }
+      return arr[bi];
+    }
+    var m = el.model.value || DATA.axes.model[0];
+    var rows = (DATA.grid[m + "|" + nearest(ax.batch, p.batch) + "|" +
+                nearest(ax.prompt, p.prompt) + "|" +
+                nearest(ax.output, p.output)] || []).slice();
+    var slo = SLOS[p.slo];
+    rows.forEach(function (r) {
+      r.ok = r.f && r.c !== null && (slo === null || r.ttft <= slo);
+    });
+    return rows.filter(function (r) { return r.ok; })
+               .sort(function (a, b) { return a.c - b.c; });
+  }
+
+  var CLASSES = [["voice", "Voice agent"], ["code", "Code completion"],
+                 ["rag", "Long-context RAG"], ["agentic", "Agentic long context"],
+                 ["batch", "Batch embedding"]];
+
+  function renderOverview() {
+    var html = "";
+    CLASSES.forEach(function (c) {
+      var top = rankFor(c[0]).slice(0, 3);
+      html += '<div class="idx-ov-card" data-w="' + c[0] + '">' +
+        '<h3>' + c[1] + "</h3>";
+      if (!top.length) {
+        html += '<p class="idx-fine">No placement meets this budget.</p>';
+      } else {
+        top.forEach(function (r, i) {
+          html += '<div class="idx-ov-row"><span class="idx-ov-rank">' + (i + 1) +
+            '</span><span class="idx-ov-name">' + label(r.s) +
+            '<span class="idx-vendor">' + vendor(r.s) + "</span></span>" +
+            '<span class="idx-ov-cost">$' + r.c.toFixed(3) + "</span>" +
+            (ERR[r.s] ? '<span class="idx idx-val">M</span>'
+                      : '<span class="idx idx-prior">p</span>') + "</div>";
+        });
+      }
+      html += '<button type="button" class="idx-ov-link" data-w="' + c[0] +
+              '">Open in the index</button></div>';
+    });
+    document.getElementById("idx-overview").innerHTML = html;
+    document.querySelectorAll(".idx-ov-link").forEach(function (b) {
+      b.addEventListener("click", function () {
+        applyPreset(b.getAttribute("data-w"));
+        document.getElementById("ctl-heading").scrollIntoView({behavior: "smooth"});
+      });
+    });
+  }
+
+  function renderMatrix() {
+    var order = {}, all = {};
+    CLASSES.forEach(function (c) {
+      rankFor(c[0]).forEach(function (r, i) {
+        (order[r.s] = order[r.s] || {})[c[0]] = i + 1;
+        all[r.s] = true;
+      });
+    });
+    // Every placement in the fleet gets a row, including ones that never rank,
+    // because a missing row reads as an omission and a dash reads as a result.
+    (DATA.grid[Object.keys(DATA.grid)[0]] || []).forEach(function (r) { all[r.s] = true; });
+    var keys = Object.keys(all).sort(function (a, b) {
+      var sa = CLASSES.reduce(function (t, c) { return t + ((order[a]||{})[c[0]] || 99); }, 0);
+      var sb = CLASSES.reduce(function (t, c) { return t + ((order[b]||{})[c[0]] || 99); }, 0);
+      return sa - sb;
+    });
+    var h = "<thead><tr><th scope='col'>Accelerator</th>";
+    CLASSES.forEach(function (c) { h += "<th scope='col' class='num'>" + c[1] + "</th>"; });
+    h += "</tr></thead><tbody>";
+    keys.forEach(function (k) {
+      h += "<tr><th scope='row'>" + label(k) +
+           '<span class="idx-vendor">' + vendor(k) + "</span></th>";
+      CLASSES.forEach(function (c) {
+        var v = (order[k] || {})[c[0]];
+        h += '<td class="num' + (v === 1 ? " idx-first" : "") + '">' +
+             (v ? v : "&mdash;") + "</td>";
+      });
+      h += "</tr>";
+    });
+    document.getElementById("idx-matrix").innerHTML = h + "</tbody>";
+  }
+
+  document.querySelectorAll(".idx-preset").forEach(function (b) {
+    b.addEventListener("click", function () {
+      applyPreset(b.getAttribute("data-w"));
+    });
+  });
+
+  // Any manual change drops back to Custom, so the highlighted preset never
+  // claims a configuration the reader has since edited.
+  ["batch", "prompt", "output", "slo"].forEach(function (k) {
+    el[k].addEventListener("input", function () { applyPreset("custom"); });
+  });
+
+  fetch("/assets/index_data.json")
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (d) {
+      DATA = d;
+      el.model.innerHTML = d.axes.model.map(function (m) {
+        return '<option value="' + m + '">' + m + "</option>";
+      }).join("");
+      el.batch.max  = d.axes.batch.length - 1;
+      el.prompt.max = d.axes.prompt.length - 1;
+      el.output.max = d.axes.output.length - 1;
+      el.batch.value = Math.min(4, d.axes.batch.length - 1);
+      var q = (location.search.match(/[?&]w=([a-z]+)/) || [])[1];
+      applyPreset(PRESETS[q] ? q : "voice");
+      renderOverview();
+      renderMatrix();
+    })
+    .catch(function (e) {
+      el.callout.className = "idx-callout warn";
+      el.callout.textContent =
+        "Could not load the placement grid (" + e.message + "). Every figure " +
+        "on this page is also available from the command line: " +
+        "pip install berth-placement, then berth estimate.";
+    });
+})();
+</script>
+
+  <script src="/js/site.js"></script>
+</body>
+</html>
