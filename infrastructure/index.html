@@ -3,16 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reckon Research | Adaptive placement infrastructure for AI inference</title>
-<meta name="description" content="The served token: one output token delivered inside its SLO and above its quality floor. We define the unit, publish the instrument, and build the API and agents that act on it.">
-<link rel="canonical" href="https://reckonresearch.com/">
-
-<meta property="og:title" content="Adaptive placement infrastructure for AI inference">
-<meta property="og:description" content="AI is the first trillion-dollar infrastructure that cannot yet state, in a standard unit, what its output costs.">
-<meta property="og:url" content="https://reckonresearch.com/">
-<meta property="og:type" content="website">
+<title>Infrastructure | Reckon Research</title>
+<meta name="description" content="berth predicts what a workload costs on a given accelerator. sounding measures the real thing. pilot adapts the placement and proves what the change saved.">
+<meta property="og:title" content="Infrastructure | Reckon Research">
+<meta property="og:description" content="berth predicts what a workload costs on a given accelerator. sounding measures the real thing. pilot adapts the placement and proves what the change saved.">
 <meta name="twitter:card" content="summary_large_image">
-
 <style>
 /* ---------------------------------------------------------------------------
    Reckon Research
@@ -185,6 +180,15 @@ pre .p{color:#8FA0C4}
 .ways b{display:block;font-weight:600;margin-bottom:.25rem}
 .ways span{color:var(--slate);font-size:.96rem}
 
+/* --- what we sell ------------------------------------------------------- */
+.offers{list-style:none;margin:1.6rem 0}
+.offers li{padding:1.25rem 0;border-bottom:var(--rule)}
+.offers li:first-child{border-top:var(--rule)}
+.offers b{font-weight:600;font-size:1.04rem}
+.offers .basis{font-family:var(--mono);font-size:.78rem;color:var(--amber);
+  margin-left:.65rem}
+.offers p{margin:.4rem 0 0;color:var(--slate);font-size:.95rem}
+
 footer{border-top:var(--rule);padding:2.5rem 0 3.5rem;font-size:.88rem;color:var(--slate)}
 footer .row{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center}
 footer a{text-decoration:none;border-bottom:1px solid var(--hair)}
@@ -210,10 +214,69 @@ footer .rt{margin-left:auto}
 
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- page header, shared by the two interior pages ---------------------- */
+.phead{padding:clamp(3rem,6vw,5rem) 0 clamp(2rem,4vw,3rem);border-bottom:var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:.8rem;color:var(--amber);margin-bottom:1.1rem}
+.phead h1{font-size:clamp(2rem,4vw,3rem);max-width:none}
+.phead .sub{max-width:52ch;margin-top:1.1rem}
+
+/* --- the canonical definition, set as a specification ------------------- */
+.canon{border:var(--rule);border-left:3px solid var(--navy);border-radius:0 4px 4px 0;
+  background:#fff;padding:1.6rem 1.75rem;margin:2rem 0}
+.canon .lbl{font-family:var(--mono);font-size:.74rem;color:var(--slate);
+  margin-bottom:.85rem;letter-spacing:.02em}
+.canon p{margin-bottom:.85rem;color:var(--ink);font-size:1.02rem}
+.canon p:last-child{margin-bottom:0}
+
+/* --- the ordered stack: three tools, in the order they are used --------- */
+.stack{margin-top:1rem}
+.step{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:clamp(1rem,4vw,3.5rem);
+  padding:clamp(2rem,4vw,3rem) 0;border-top:var(--rule)}
+.step:first-child{border-top:none}
+.step-k{font-family:var(--mono);font-size:.82rem;color:var(--navy);font-weight:500;padding-top:.5rem}
+.step-b{max-width:60ch}
+.step-b p{margin-bottom:1.05rem;color:var(--slate)}
+.step-b p.ink{color:var(--ink)}
+.step-b p.role{margin-bottom:1.1rem}
+.step-b h2{font-family:var(--mono);font-size:1.5rem;letter-spacing:-.02em;margin-bottom:.3rem}
+.step-b .role{color:var(--amber);font-family:var(--mono);font-size:.82rem;margin-bottom:1.1rem}
+
+.facts{list-style:none;margin:1.3rem 0;border-top:var(--rule)}
+.facts li{padding:.7rem 0;border-bottom:var(--rule);font-size:.95rem;color:var(--slate)}
+.facts li b{color:var(--ink);font-weight:600}
+
+/* --- research: the paper, featured ------------------------------------- */
+.paper{border:var(--rule);border-radius:4px;background:#fff;overflow:hidden;margin:2rem 0}
+.paper-in{padding:clamp(1.6rem,3vw,2.5rem);max-width:74ch}
+.paper .kicker{font-family:var(--mono);font-size:.75rem;color:var(--slate);margin-bottom:.9rem}
+.paper h2{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:.9rem}
+.paper p{color:var(--slate);margin-bottom:1rem}
+.paper .quote{color:var(--ink);border-left:2px solid var(--amber);padding-left:1.1rem;
+  margin:1.3rem 0;font-size:1.04rem}
+
+.open{list-style:none;margin-top:1rem}
+.open li{padding:1.35rem 0;border-bottom:var(--rule)}
+.open li:first-child{border-top:var(--rule)}
+.open h3{font-size:1.06rem;font-weight:600;margin-bottom:.35rem}
+.open p{color:var(--slate);font-size:.96rem;margin:0}
+.open .tag{font-family:var(--mono);font-size:.74rem;color:var(--amber);margin-left:.6rem}
+
+.rules{list-style:none;margin-top:.4rem}
+.rules li{padding:.95rem 0 .95rem 1.5rem;border-bottom:var(--rule);position:relative;
+  color:var(--slate);font-size:.96rem}
+.rules li:first-child{border-top:var(--rule)}
+.rules li::before{content:"";position:absolute;left:0;top:1.35rem;width:6px;height:6px;
+  background:var(--navy);border-radius:50%}
+.rules li b{color:var(--ink);font-weight:600}
+
+@media (max-width:820px){
+  .step{grid-template-columns:1fr;gap:.5rem}
+  .step-k{padding-top:0}
+}
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="/">
@@ -225,169 +288,145 @@ footer .rt{margin-left:auto}
       <li><a class="link" href="/infrastructure/">Infrastructure</a></li>
       <li><a class="link" href="/index/">The Index</a></li>
       <li><a class="link" href="/research/">Research</a></li>
+      <li><a class="link" href="/#working-together">Pricing</a></li>
       <li><a class="link" href="https://docs.reckonresearch.com">Docs</a></li>
       <li><a class="link" href="/contact/">Contact</a></li>
     </ul>
   </div>
 </nav>
 
-<header class="hero">
+<header class="phead">
   <div class="wrap">
-    <div>
-    <p class="proof">The same model can cost 40x more in one placement than another</p>
-    <h1>Adaptive placement infrastructure for AI inference</h1>
-    <p class="sub">To measure what compute produces, and move every workload to where it produces most.</p>
-    <div class="cta">
-      <a class="btn" href="https://themissingmeter.org">Read the paper &rarr;</a>
-      <code class="install">pip install berth-placement</code>
-    </div>
-    </div>
-
-    <!-- The signature. Two production services, same weights, same hardware,
-         same target met. Drawn to scale so the gap is the point rather than
-         the numbers. This is the finding, not an illustration of it. -->
-    <div class="measure">
-      <p class="measure-head">Two production services &middot; identical weights &middot; identical hardware &middot; same target met</p>
-      <div class="bars">
-        <div class="bar">
-          <span class="bar-name">Service A</span>
-          <div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div>
-          <span class="bar-val">$1.06</span>
-        </div>
-        <div class="bar hi">
-          <span class="bar-name">Service B</span>
-          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-          <span class="bar-val">$41.86</span>
-        </div>
-      </div>
-      <p class="measure-note">Cost per million served tokens. Nobody chose this. Neither team could see it.</p>
-    </div>
+    <p class="eyebrow">Infrastructure</p>
+    <h1>The unit is measured, the measurement is checked, and the decision is acted on.</h1>
+    <p class="sub">Three tools, in the order they are used. All open source. All reproducible from published traces.</p>
   </div>
 </header>
 
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">1.0</div>
-    <div class="body">
-      <p class="lede ink"><strong>AI is the first trillion-dollar infrastructure that cannot yet state, in a standard unit, what its output costs.</strong></p>
-      <p>That spending buys hours. What anyone actually needs is work delivered before a deadline. No standard unit connects the two, so nobody can say what a workload costs, compare two places to run it, or prove a change made anything better.</p>
-      <p class="ink">Every efficiency gain in AI today is unmeasurable. It is why capital cannot tell a good decision from a lucky one, and why the same model can cost 40x more in one placement than another while meeting the same target.</p>
-      <p class="ink"><strong>We built the missing meter, and the system that acts on what it reads.</strong></p>
+<section class="blk" style="border-top:none">
+  <div class="wrap">
+    <div class="body" style="max-width:70ch">
+      <div class="canon" style="margin-top:0">
+        <p class="lbl">Adaptive placement, defined</p>
+        <p>The continuous selection, sizing, and migration of a declared workload
+        class across the full space of chips, providers, and price bases that can
+        serve it.</p>
+        <p>The workload class is declared as a model, a workload shape, and a
+        service level. Feasibility is gated on TTFT p99 and TPOT p99. Feasible
+        candidates are ranked by estimated cost of useful work at a stated price
+        basis.</p>
+        <p>The ranking is re-derived as workload shape, prices, capacity, stack
+        versions, and available silicon change. A move executes only when the
+        estimated gain exceeds switching cost plus the confidence interval on the
+        estimate.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">2.0</div>
-    <div class="body">
-      <h2>The unit</h2>
-      <div class="defn">
-        <div><span class="term">The served token</span><span class="abbr">SVT</span></div>
-        <p class="gloss">One output token delivered inside its service-level objective and above its quality floor.</p>
-        <p class="unit">price notation &nbsp;$/MSVT&nbsp; &middot; &nbsp;dollars per million served tokens</p>
-      </div>
-      <p class="ink">A token that arrives after its deadline is not a cheap token. It is not a token.</p>
-      <p>Every existing measure drops something.</p>
-      <ul class="drops">
-        <li><span class="m">$ / GPU-hour</span><span class="d">drops the output</span></li>
-        <li><span class="m">$ / raw token</span><span class="d">drops the deadline and the quality</span></li>
-        <li><span class="m">benchmarks</span><span class="d">drop the price</span></li>
-        <li><span class="m">uptime SLAs</span><span class="d">drop everything but the deadline</span></li>
+<div class="wrap"><div class="stack">
+
+  <div class="step">
+    <div class="step-k">01</div>
+    <div class="step-b">
+      <h2>berth</h2>
+      <p class="role">the estimator</p>
+      <p class="ink">Predicts what a workload costs and how fast it runs on a given
+      accelerator, before you rent it.</p>
+      <p>You describe the workload: model, concurrency, prompt and output lengths,
+      and the latency bound you have to hold. berth returns dollars per million
+      served tokens, time to first token, and time per output token, for every
+      placement it knows about.</p>
+      <ul class="facts">
+        <li><b>A placement that misses your bound is excluded, not ranked cheaply.</b>
+        Its cost per served token is not high, it is undefined.</li>
+        <li><b>It is a page of physics.</b> A closed-form roofline plus a queueing
+        term. No learned components, no training data, every number auditable by
+        hand.</li>
+        <li><b>Nothing leaves your machine.</b> It runs in your environment.</li>
       </ul>
-      <p class="ink">The served token is the first measure of AI compute that carries all of it at once: the work, the deadline, the quality, and the invoice.</p>
-      <div class="pull">The specification is published, and anyone may use it, including the people who compete with us. <strong>A unit nobody else may use is not a unit.</strong></div>
+      <pre><span class="p">$</span> berth place --model llama3-8b --slo-ms 800</pre>
       <div class="links">
-        <a href="https://themissingmeter.org">The Missing Meter</a>
-        <a href="https://docs.reckonresearch.com/the-unit/">The specification</a>
+        <a href="https://docs.reckonresearch.com/berth/">Documentation</a>
+        <a href="https://docs.reckonresearch.com/the-physics/">The physics</a>
       </div>
     </div>
   </div>
-</section>
 
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">3.0</div>
-    <div class="body">
-      <h2>Adaptive placement</h2>
-      <p class="lede ink">Deciding which chip, which provider, and at which price a model should run under a stated p99, then moving it as prices, capacity, and traffic shift.</p>
-      <p><strong>The problem:</strong> that answer changes. A model version ships. A price moves. Traffic shifts. Most teams decide once and never check.</p>
-      <p class="ink"><strong>What makes it adaptive:</strong> it never stops deciding. Prices move, models ship, capacity changes. So does the right placement.</p>
+  <div class="step">
+    <div class="step-k">02</div>
+    <div class="step-b">
+      <h2>sounding</h2>
+      <p class="role">the harness</p>
+      <p class="ink">Measures the real thing and checks the prediction.</p>
+      <p>It drives a live endpoint, records what actually happened, and produces
+      the traces that say whether the prediction was right.</p>
+      <ul class="facts">
+        <li><b>It never imports the estimator.</b> Enforced by test. Evidence that
+        cannot be separated from the thing it evaluates is not evidence.</li>
+        <li><b>Run conditions are captured, not assumed.</b> Hardware identity,
+        the served model, precision, and cache behaviour are all read from the
+        machine and recorded, or recorded as unverifiable.</li>
+        <li><b>Only physical impossibility refuses a file.</b> Everything else is
+        printed and passed. A checker that rejects correct data is the more
+        dangerous failure, because it is silent.</li>
+      </ul>
       <div class="links">
-        <a href="/infrastructure/">How it works</a>
-        <a href="https://docs.reckonresearch.com/quickstart/">Run it yourself</a>
+        <a href="https://docs.reckonresearch.com/sounding/">Documentation</a>
+        <a href="/validation/">Validation record</a>
+        <a href="https://docs.reckonresearch.com/verify-and-contribute/">Contribute a cell</a>
       </div>
     </div>
   </div>
-</section>
+
+  <div class="step">
+    <div class="step-k">03</div>
+    <div class="step-b">
+      <h2>pilot</h2>
+      <p class="role">the agent</p>
+      <p class="ink">Watches for change, adapts the placement, and proves what the
+      change saved.</p>
+      <p>A placement is not a decision, it is a position that decays. A model
+      version ships. A price moves. Traffic shifts. Most teams decide once and
+      never check, because checking means re-measuring and nothing says when it is
+      worth doing.</p>
+      <ul class="facts">
+        <li><b>It never touches a request.</b> No proxy, no gateway, no traffic.
+        Your own infrastructure moves the workload.</li>
+        <li><b>It proposes, you dispose.</b> A change arrives as a pull request
+        against your deployment config, with the diff and the evidence attached.
+        It cannot merge and cannot write to a default branch.</li>
+        <li><b>Most passes produce nothing.</b> That is the design. An agent that
+        proposes every week gets muted, and a muted agent is worse than none
+        because it looks like coverage.</li>
+        <li><b>A saving is proven, not claimed.</b> Under the Holdout Protocol a
+        declared slice of traffic stays on the old placement so the difference can
+        be measured.</li>
+      </ul>
+      <p>The code is open source and free, like everything else here. Holding a
+      class correct over time, and proving what it saved, is what we are paid
+      for.</p>
+      <div class="links">
+        <a href="https://docs.reckonresearch.com/pilot/">Documentation</a>
+        <a href="https://docs.reckonresearch.com/holdout/">The Holdout Protocol</a>
+        <a href="/#working-together">Working together</a>
+      </div>
+    </div>
+  </div>
+
+</div></div>
 
 <section class="blk">
-  <div class="wrap grid">
-    <div class="num">4.0</div>
+  <div class="wrap">
     <div class="body">
-      <h2>The infrastructure</h2>
-      <p>Three pieces. The unit is measured, the measurement is checked, and the decision is acted on.</p>
-      <div class="tools">
-        <div class="tool">
-          <h3>berth</h3>
-          <p>Predicts what a workload costs and how fast it runs on a given accelerator, before you rent it.</p>
-        </div>
-        <div class="tool">
-          <h3>sounding</h3>
-          <p>Measures the real thing and checks the prediction.</p>
-        </div>
-        <div class="tool">
-          <h3>pilot</h3>
-          <p>Watches for change, adapts the placement, and proves what the change saved.</p>
-        </div>
-      </div>
+      <h2>Start with one workload</h2>
+      <p>Pick the class you spend the most on. Estimate it, measure it, and compare
+      the two. If the estimate is wrong, tell us where, and bring traces.</p>
       <pre><span class="p">$</span> pip install berth-placement</pre>
-      <p style="margin-top:1.2rem">All open source. All reproducible from published traces.</p>
-      <div class="links"><a href="/infrastructure/">Infrastructure</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">5.0</div>
-    <div class="body">
-      <h2>It is arithmetic</h2>
-      <p class="ink">The model is a page of physics: bytes moved, work done, time under load. No learned components and no training data, so every number is auditable by hand.</p>
-      <p>That matters because an answer is only worth having if you can check it. Every prediction ships with the term that produced it and a label saying whether that term rests on a measurement or a specification sheet.</p>
-      <p>Where the physics stops describing the machine, we will learn the difference. Knowing exactly where it stops is what makes that possible, and mapping that boundary is the research.</p>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">6.0</div>
-    <div class="body">
-      <h2>Measured, and published either way</h2>
-      <p class="ink">An untuned model, fitted on one accelerator, predicts hardware it has never seen to within ten percent. The bar was set and published before the first measurement was taken.</p>
-      <p>Every trace is downloadable. Every number is reproducible. When the instrument itself is wrong, we publish that too, with the mechanism and the test that catches it if it returns.</p>
-      <div class="pull"><strong>A measurement tool that has never been caught lying has not been used hard enough.</strong></div>
       <div class="links">
-        <a href="/index/">The Placement Index</a>
-        <a href="/validation/">Validation</a>
-        <a href="/research/">How we work</a>
+        <a href="https://docs.reckonresearch.com/quickstart/">Get started</a>
+        <a href="https://github.com/reckonresearch/berth">Source</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">7.0</div>
-    <div class="body">
-      <h2>Working with us</h2>
-      <ul class="ways">
-        <li><b>If you serve your own models</b><span>Use berth and tell us where its numbers are wrong. Bring traces.</span></li>
-        <li><b>If you operate hardware or a cloud</b><span>Contribute measurement access under our published governance.</span></li>
-        <li><b>If you work on performance modelling, systems learning, or market design</b><span>This is a genuine open problem with a deterministic verifier and a live environment attached.</span></li>
-      </ul>
-      <div class="links"><a href="mailto:hello@reckonresearch.com">hello@reckonresearch.com</a></div>
     </div>
   </div>
 </section>
@@ -403,7 +442,6 @@ footer .rt{margin-left:auto}
     <span class="rt">Apache-2.0 &middot; specification CC BY 4.0</span>
   </div>
 </footer>
-
 <script>
   var t = document.querySelector('.navtoggle'), m = document.getElementById('navmenu');
   t.addEventListener('click', function () {

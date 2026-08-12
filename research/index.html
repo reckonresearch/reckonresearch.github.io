@@ -3,16 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reckon Research | Adaptive placement infrastructure for AI inference</title>
-<meta name="description" content="The served token: one output token delivered inside its SLO and above its quality floor. We define the unit, publish the instrument, and build the API and agents that act on it.">
-<link rel="canonical" href="https://reckonresearch.com/">
-
-<meta property="og:title" content="Adaptive placement infrastructure for AI inference">
-<meta property="og:description" content="AI is the first trillion-dollar infrastructure that cannot yet state, in a standard unit, what its output costs.">
-<meta property="og:url" content="https://reckonresearch.com/">
-<meta property="og:type" content="website">
+<title>Research | Reckon Research</title>
+<meta name="description" content="The Missing Meter, the open problems in placement modelling, and the rules we measure under. Pre-registration, published failures, and a defect register.">
+<meta property="og:title" content="Research | Reckon Research">
+<meta property="og:description" content="The Missing Meter, the open problems in placement modelling, and the rules we measure under. Pre-registration, published failures, and a defect register.">
 <meta name="twitter:card" content="summary_large_image">
-
 <style>
 /* ---------------------------------------------------------------------------
    Reckon Research
@@ -185,6 +180,15 @@ pre .p{color:#8FA0C4}
 .ways b{display:block;font-weight:600;margin-bottom:.25rem}
 .ways span{color:var(--slate);font-size:.96rem}
 
+/* --- what we sell ------------------------------------------------------- */
+.offers{list-style:none;margin:1.6rem 0}
+.offers li{padding:1.25rem 0;border-bottom:var(--rule)}
+.offers li:first-child{border-top:var(--rule)}
+.offers b{font-weight:600;font-size:1.04rem}
+.offers .basis{font-family:var(--mono);font-size:.78rem;color:var(--amber);
+  margin-left:.65rem}
+.offers p{margin:.4rem 0 0;color:var(--slate);font-size:.95rem}
+
 footer{border-top:var(--rule);padding:2.5rem 0 3.5rem;font-size:.88rem;color:var(--slate)}
 footer .row{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center}
 footer a{text-decoration:none;border-bottom:1px solid var(--hair)}
@@ -210,10 +214,69 @@ footer .rt{margin-left:auto}
 
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* --- page header, shared by the two interior pages ---------------------- */
+.phead{padding:clamp(3rem,6vw,5rem) 0 clamp(2rem,4vw,3rem);border-bottom:var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:.8rem;color:var(--amber);margin-bottom:1.1rem}
+.phead h1{font-size:clamp(2rem,4vw,3rem);max-width:none}
+.phead .sub{max-width:52ch;margin-top:1.1rem}
+
+/* --- the canonical definition, set as a specification ------------------- */
+.canon{border:var(--rule);border-left:3px solid var(--navy);border-radius:0 4px 4px 0;
+  background:#fff;padding:1.6rem 1.75rem;margin:2rem 0}
+.canon .lbl{font-family:var(--mono);font-size:.74rem;color:var(--slate);
+  margin-bottom:.85rem;letter-spacing:.02em}
+.canon p{margin-bottom:.85rem;color:var(--ink);font-size:1.02rem}
+.canon p:last-child{margin-bottom:0}
+
+/* --- the ordered stack: three tools, in the order they are used --------- */
+.stack{margin-top:1rem}
+.step{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:clamp(1rem,4vw,3.5rem);
+  padding:clamp(2rem,4vw,3rem) 0;border-top:var(--rule)}
+.step:first-child{border-top:none}
+.step-k{font-family:var(--mono);font-size:.82rem;color:var(--navy);font-weight:500;padding-top:.5rem}
+.step-b{max-width:60ch}
+.step-b p{margin-bottom:1.05rem;color:var(--slate)}
+.step-b p.ink{color:var(--ink)}
+.step-b p.role{margin-bottom:1.1rem}
+.step-b h2{font-family:var(--mono);font-size:1.5rem;letter-spacing:-.02em;margin-bottom:.3rem}
+.step-b .role{color:var(--amber);font-family:var(--mono);font-size:.82rem;margin-bottom:1.1rem}
+
+.facts{list-style:none;margin:1.3rem 0;border-top:var(--rule)}
+.facts li{padding:.7rem 0;border-bottom:var(--rule);font-size:.95rem;color:var(--slate)}
+.facts li b{color:var(--ink);font-weight:600}
+
+/* --- research: the paper, featured ------------------------------------- */
+.paper{border:var(--rule);border-radius:4px;background:#fff;overflow:hidden;margin:2rem 0}
+.paper-in{padding:clamp(1.6rem,3vw,2.5rem);max-width:74ch}
+.paper .kicker{font-family:var(--mono);font-size:.75rem;color:var(--slate);margin-bottom:.9rem}
+.paper h2{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:.9rem}
+.paper p{color:var(--slate);margin-bottom:1rem}
+.paper .quote{color:var(--ink);border-left:2px solid var(--amber);padding-left:1.1rem;
+  margin:1.3rem 0;font-size:1.04rem}
+
+.open{list-style:none;margin-top:1rem}
+.open li{padding:1.35rem 0;border-bottom:var(--rule)}
+.open li:first-child{border-top:var(--rule)}
+.open h3{font-size:1.06rem;font-weight:600;margin-bottom:.35rem}
+.open p{color:var(--slate);font-size:.96rem;margin:0}
+.open .tag{font-family:var(--mono);font-size:.74rem;color:var(--amber);margin-left:.6rem}
+
+.rules{list-style:none;margin-top:.4rem}
+.rules li{padding:.95rem 0 .95rem 1.5rem;border-bottom:var(--rule);position:relative;
+  color:var(--slate);font-size:.96rem}
+.rules li:first-child{border-top:var(--rule)}
+.rules li::before{content:"";position:absolute;left:0;top:1.35rem;width:6px;height:6px;
+  background:var(--navy);border-radius:50%}
+.rules li b{color:var(--ink);font-weight:600}
+
+@media (max-width:820px){
+  .step{grid-template-columns:1fr;gap:.5rem}
+  .step-k{padding-top:0}
+}
 </style>
 </head>
 <body>
-
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="/">
@@ -225,81 +288,125 @@ footer .rt{margin-left:auto}
       <li><a class="link" href="/infrastructure/">Infrastructure</a></li>
       <li><a class="link" href="/index/">The Index</a></li>
       <li><a class="link" href="/research/">Research</a></li>
+      <li><a class="link" href="/#working-together">Pricing</a></li>
       <li><a class="link" href="https://docs.reckonresearch.com">Docs</a></li>
       <li><a class="link" href="/contact/">Contact</a></li>
     </ul>
   </div>
 </nav>
 
-<header class="hero">
+<header class="phead">
   <div class="wrap">
-    <div>
-    <p class="proof">The same model can cost 40x more in one placement than another</p>
-    <h1>Adaptive placement infrastructure for AI inference</h1>
-    <p class="sub">To measure what compute produces, and move every workload to where it produces most.</p>
-    <div class="cta">
-      <a class="btn" href="https://themissingmeter.org">Read the paper &rarr;</a>
-      <code class="install">pip install berth-placement</code>
-    </div>
-    </div>
-
-    <!-- The signature. Two production services, same weights, same hardware,
-         same target met. Drawn to scale so the gap is the point rather than
-         the numbers. This is the finding, not an illustration of it. -->
-    <div class="measure">
-      <p class="measure-head">Two production services &middot; identical weights &middot; identical hardware &middot; same target met</p>
-      <div class="bars">
-        <div class="bar">
-          <span class="bar-name">Service A</span>
-          <div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div>
-          <span class="bar-val">$1.06</span>
-        </div>
-        <div class="bar hi">
-          <span class="bar-name">Service B</span>
-          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
-          <span class="bar-val">$41.86</span>
-        </div>
-      </div>
-      <p class="measure-note">Cost per million served tokens. Nobody chose this. Neither team could see it.</p>
-    </div>
+    <p class="eyebrow">Research</p>
+    <h1>The unit comes first. Everything that makes a market comes after.</h1>
+    <p class="sub">One paper, a set of open problems, and the rules we work
+    under. All of it published, including the parts that did not go our way.</p>
   </div>
 </header>
 
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">1.0</div>
-    <div class="body">
-      <p class="lede ink"><strong>AI is the first trillion-dollar infrastructure that cannot yet state, in a standard unit, what its output costs.</strong></p>
-      <p>That spending buys hours. What anyone actually needs is work delivered before a deadline. No standard unit connects the two, so nobody can say what a workload costs, compare two places to run it, or prove a change made anything better.</p>
-      <p class="ink">Every efficiency gain in AI today is unmeasurable. It is why capital cannot tell a good decision from a lucky one, and why the same model can cost 40x more in one placement than another while meeting the same target.</p>
-      <p class="ink"><strong>We built the missing meter, and the system that acts on what it reads.</strong></p>
+<section class="blk" style="border-top:none">
+  <div class="wrap">
+    <div class="paper">
+      <div class="paper-in">
+        <p class="kicker">Paper &middot; 2026</p>
+        <h2>The Missing Meter</h2>
+        <p class="ink">Why AI inference has no unit of account, what the missing
+        one costs, and how the served token closes it.</p>
+        <div class="quote">AI is the first trillion-dollar infrastructure that
+        cannot yet state, in a standard unit, what its output costs.</div>
+        <p>Electricity had lamp-months before it had the kilowatt-hour. Freight
+        had negotiated rates before it had the ton-mile. In both cases the unit
+        arrived after the industry was already enormous, and everything that
+        made a market followed it rather than preceding it. The paper argues
+        that AI inference is at the same point, specifies the served token, and
+        replays production traces from two independent operators to show what
+        the absence is costing.</p>
+        <div class="links">
+          <a href="https://themissingmeter.org">Read the paper</a>
+          <a href="https://docs.reckonresearch.com/the-unit/">The specification</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="blk">
   <div class="wrap grid">
-    <div class="num">2.0</div>
+    <div class="num">01</div>
     <div class="body">
-      <h2>The unit</h2>
-      <div class="defn">
-        <div><span class="term">The served token</span><span class="abbr">SVT</span></div>
-        <p class="gloss">One output token delivered inside its service-level objective and above its quality floor.</p>
-        <p class="unit">price notation &nbsp;$/MSVT&nbsp; &middot; &nbsp;dollars per million served tokens</p>
-      </div>
-      <p class="ink">A token that arrives after its deadline is not a cheap token. It is not a token.</p>
-      <p>Every existing measure drops something.</p>
-      <ul class="drops">
-        <li><span class="m">$ / GPU-hour</span><span class="d">drops the output</span></li>
-        <li><span class="m">$ / raw token</span><span class="d">drops the deadline and the quality</span></li>
-        <li><span class="m">benchmarks</span><span class="d">drop the price</span></li>
-        <li><span class="m">uptime SLAs</span><span class="d">drop everything but the deadline</span></li>
+      <h2>Open problems</h2>
+      <p>Stating what we cannot yet model is rarer than publishing what we can,
+      and it is the more useful half. These are open, and we would rather they
+      were solved by someone else than not at all.</p>
+      <ul class="open">
+        <li>
+          <h3>Where the closed form stops describing the machine<span class="tag">active</span></h3>
+          <p>A page of physics predicts most of inference well. It does not
+          describe everything, and the interesting question is the boundary:
+          disaggregated serving, speculative decoding, and the regimes where a
+          scheduler rather than the silicon sets the answer. Mapping that
+          boundary is what makes a learned residual tractable rather than a
+          replacement for understanding.</p>
+        </li>
+        <li>
+          <h3>Generalization across architectures<span class="tag">active</span></h3>
+          <p>A constant fitted on one accelerator transfers to another it has
+          never seen, within ten percent, across different memory technology.
+          Whether that survives a different compiler and a different memory
+          system is the measurement that turns a useful result into a general
+          one.</p>
+        </li>
+        <li>
+          <h3>Portfolio placement across a class<span class="tag">open</span></h3>
+          <p>Workloads with different deadlines share capacity. Solving each in
+          isolation leaves the headroom that a tight-deadline class reserves
+          unused by the loose one. Whether solving jointly beats solving
+          independently by more than the uncertainty is an open question with a
+          pre-registered kill criterion.</p>
+        </li>
+        <li>
+          <h3>Mechanism design for heterogeneous compute<span class="tag">open</span></h3>
+          <p>Once output is priced in a common unit, allocation becomes a market
+          design problem rather than a scheduling one. What contracts, what
+          settlement, and what happens to depreciation schedules when an
+          external unit prices what the asset produces.</p>
+        </li>
       </ul>
-      <p class="ink">The served token is the first measure of AI compute that carries all of it at once: the work, the deadline, the quality, and the invoice.</p>
-      <div class="pull">The specification is published, and anyone may use it, including the people who compete with us. <strong>A unit nobody else may use is not a unit.</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="wrap grid">
+    <div class="num">02</div>
+    <div class="body">
+      <h2>How we work</h2>
+      <p>A measurement organisation is only worth what its method is worth.
+      These are the rules, and they are the reason to believe anything above.</p>
+      <ul class="rules">
+        <li><b>Pre-registration.</b> The success criterion is written and
+        published before the measurement is taken. A bar set afterwards is not a
+        bar.</li>
+        <li><b>The instrument never imports the model it evaluates.</b> Enforced
+        by test. Evidence that cannot be separated from the thing it evaluates
+        is not evidence.</li>
+        <li><b>Unfavourable results publish.</b> Including the ones that
+        contradict something we already said in public.</li>
+        <li><b>Every number carries its provenance.</b> Measured, fitted,
+        configured, or simulated, stated on the face of the output. A number
+        labelled measured that contains a simulated input is the one
+        unrecoverable error.</li>
+        <li><b>The failures of the instrument are published too.</b> Eleven so
+        far, each with its mechanism, how it was caught, and the test that fails
+        if it returns. A measurement tool that has never been caught lying has
+        not been used hard enough.</li>
+        <li><b>Hardware access never buys editorial input.</b> No provider pays
+        to be measured, ranked, or placed, and every data sale is disclosed.</li>
+      </ul>
       <div class="links">
-        <a href="https://themissingmeter.org">The Missing Meter</a>
-        <a href="https://docs.reckonresearch.com/the-unit/">The specification</a>
+        <a href="https://github.com/reckonresearch/berth/blob/main/DEFECTS.md">The defect register</a>
+        <a href="/validation/">Validation record</a>
+        <a href="https://docs.reckonresearch.com/verify-and-contribute/">Contribute a measurement</a>
       </div>
     </div>
   </div>
@@ -307,86 +414,26 @@ footer .rt{margin-left:auto}
 
 <section class="blk">
   <div class="wrap grid">
-    <div class="num">3.0</div>
+    <div class="num">03</div>
     <div class="body">
-      <h2>Adaptive placement</h2>
-      <p class="lede ink">Deciding which chip, which provider, and at which price a model should run under a stated p99, then moving it as prices, capacity, and traffic shift.</p>
-      <p><strong>The problem:</strong> that answer changes. A model version ships. A price moves. Traffic shifts. Most teams decide once and never check.</p>
-      <p class="ink"><strong>What makes it adaptive:</strong> it never stops deciding. Prices move, models ship, capacity changes. So does the right placement.</p>
+      <h2>Writing</h2>
+      <p>Essays and technical notes, on the unit, on placement, and on what the
+      corpus turns up.</p>
       <div class="links">
-        <a href="/infrastructure/">How it works</a>
-        <a href="https://docs.reckonresearch.com/quickstart/">Run it yourself</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">4.0</div>
-    <div class="body">
-      <h2>The infrastructure</h2>
-      <p>Three pieces. The unit is measured, the measurement is checked, and the decision is acted on.</p>
-      <div class="tools">
-        <div class="tool">
-          <h3>berth</h3>
-          <p>Predicts what a workload costs and how fast it runs on a given accelerator, before you rent it.</p>
-        </div>
-        <div class="tool">
-          <h3>sounding</h3>
-          <p>Measures the real thing and checks the prediction.</p>
-        </div>
-        <div class="tool">
-          <h3>pilot</h3>
-          <p>Watches for change, adapts the placement, and proves what the change saved.</p>
-        </div>
-      </div>
-      <pre><span class="p">$</span> pip install berth-placement</pre>
-      <p style="margin-top:1.2rem">All open source. All reproducible from published traces.</p>
-      <div class="links"><a href="/infrastructure/">Infrastructure</a></div>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">5.0</div>
-    <div class="body">
-      <h2>It is arithmetic</h2>
-      <p class="ink">The model is a page of physics: bytes moved, work done, time under load. No learned components and no training data, so every number is auditable by hand.</p>
-      <p>That matters because an answer is only worth having if you can check it. Every prediction ships with the term that produced it and a label saying whether that term rests on a measurement or a specification sheet.</p>
-      <p>Where the physics stops describing the machine, we will learn the difference. Knowing exactly where it stops is what makes that possible, and mapping that boundary is the research.</p>
-    </div>
-  </div>
-</section>
-
-<section class="blk">
-  <div class="wrap grid">
-    <div class="num">6.0</div>
-    <div class="body">
-      <h2>Measured, and published either way</h2>
-      <p class="ink">An untuned model, fitted on one accelerator, predicts hardware it has never seen to within ten percent. The bar was set and published before the first measurement was taken.</p>
-      <p>Every trace is downloadable. Every number is reproducible. When the instrument itself is wrong, we publish that too, with the mechanism and the test that catches it if it returns.</p>
-      <div class="pull"><strong>A measurement tool that has never been caught lying has not been used hard enough.</strong></div>
-      <div class="links">
+        <a href="/writing/">All writing</a>
         <a href="/index/">The Placement Index</a>
-        <a href="/validation/">Validation</a>
-        <a href="/research/">How we work</a>
       </div>
     </div>
   </div>
 </section>
 
 <section class="blk">
-  <div class="wrap grid">
-    <div class="num">7.0</div>
+  <div class="wrap">
     <div class="body">
-      <h2>Working with us</h2>
-      <ul class="ways">
-        <li><b>If you serve your own models</b><span>Use berth and tell us where its numbers are wrong. Bring traces.</span></li>
-        <li><b>If you operate hardware or a cloud</b><span>Contribute measurement access under our published governance.</span></li>
-        <li><b>If you work on performance modelling, systems learning, or market design</b><span>This is a genuine open problem with a deterministic verifier and a live environment attached.</span></li>
-      </ul>
+      <h2>Working on this</h2>
+      <p>If you work on performance modelling, systems learning, or market
+      design, the problems above are genuine, the verifier is deterministic, and
+      the environment is live.</p>
       <div class="links"><a href="mailto:hello@reckonresearch.com">hello@reckonresearch.com</a></div>
     </div>
   </div>
@@ -403,7 +450,6 @@ footer .rt{margin-left:auto}
     <span class="rt">Apache-2.0 &middot; specification CC BY 4.0</span>
   </div>
 </footer>
-
 <script>
   var t = document.querySelector('.navtoggle'), m = document.getElementById('navmenu');
   t.addEventListener('click', function () {
