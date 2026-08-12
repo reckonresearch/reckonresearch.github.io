@@ -86,3 +86,55 @@ main a[href]:not(.btn):not(.button):hover { border-bottom-color: currentColor; }
 
 /* The old nav was 52px against a serif wordmark. */
 :root { --nav-height: 64px; }
+
+/* ---------------------------------------------------------------------------
+   Index page overrides.
+
+   berth.css sets font-family on its own class selectors, so the token layer
+   above never reaches them: a class selector beats a bare element selector
+   regardless of load order. These name the same classes, so the cascade
+   resolves on order rather than specificity, and this file loads last.
+
+   Only type and colour are touched. Layout, spacing and every component rule
+   in berth.css is left alone, so the page's controls and table keep working
+   exactly as built.
+   --------------------------------------------------------------------------- */
+
+.berth-title, .berth-subtitle, .berth-table-caption,
+.section h1, .section h2, .section h3,
+.body-text h1, .body-text h2, .body-text h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.body-text, .berth-subtitle, .idx-note, .idx-sub, .idx-fine {
+  font-family: var(--sans);
+  line-height: 1.55;
+}
+
+/* Every quantity in mono: the ranking, the prices, the vendor tags, the
+   controls. On a page whose entire argument is a set of numbers, the numbers
+   should look like an instrument reading rather than like prose. */
+.num, .rank, .idx-val, .idx-vendor, .idx-preset, .idx-ctl,
+.idx-meas, .idx-prior, .idx-queue, .idx-open {
+  font-family: var(--mono);
+  font-feature-settings: normal;
+}
+
+/* MEASURED carries the accent, prior does not. The distinction between a
+   number that came off hardware and one that came off a specification sheet
+   is the most important thing on the page, and it should be visible without
+   reading the label. */
+.idx-meas { color: var(--amber); }
+.idx-prior { color: var(--fg-subtle); }
+
+.berth-table-wrap table { font-size: 0.94rem; }
+.berth-table-wrap th {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+  text-transform: none;
+}
