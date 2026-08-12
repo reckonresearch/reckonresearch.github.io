@@ -1,0 +1,210 @@
+/* Reckon Research design tokens and base styles.
+   Extracted from the homepage so an interactive page can adopt the type and
+   colour without its markup or logic being rewritten. Link it before the
+   page's own stylesheet, then delete whatever it now duplicates. */
+
+/* ---------------------------------------------------------------------------
+   Reckon Research
+
+   Type: Inter for prose, a monospace for every quantity. The mono is not
+   decoration. This is a measurement company, and a number set in the same face
+   as the sentence around it reads as prose. Set in mono it reads as a reading
+   off an instrument, which is what it is.
+
+   Colour: the navy is the mark. One accent, a signal amber, used only where
+   something has actually been measured. It appears four times on the page and
+   never as decoration.
+   --------------------------------------------------------------------------- */
+:root{
+  --ink:#0B0F1A;
+  --navy:#102147;
+  --slate:#5A6478;
+  --hair:#E2E5EB;
+  --paper:#FCFCFB;
+  --amber:#B4740B;
+
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"SF Mono",SFMono-Regular,ui-monospace,"JetBrains Mono","Roboto Mono",Menlo,monospace;
+
+  --gut:clamp(1.5rem,5vw,6rem);
+  --rule:1px solid var(--hair);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"ss01","cv05";
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+a{color:inherit}
+
+/* --- nav ---------------------------------------------------------------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(252,252,251,.88);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:var(--rule);
+}
+.nav .wrap{display:flex;align-items:center;gap:2rem;height:64px}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:none}
+.brand img{display:block;height:28px;width:auto}
+.brand span{font-weight:600;letter-spacing:-.015em;font-size:1.02rem}
+.nav ul{list-style:none;display:flex;gap:1.75rem;margin-left:auto;align-items:center}
+.nav a.link{
+  text-decoration:none;font-size:.9rem;color:var(--slate);
+  padding:.25rem 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;
+}
+.nav a.link:hover,.nav a.link:focus-visible{color:var(--ink);border-color:var(--ink)}
+.navtoggle{display:none;margin-left:auto;background:none;border:var(--rule);border-radius:4px;
+  padding:.4rem .6rem;font:inherit;font-size:.85rem;cursor:pointer;color:var(--slate)}
+
+/* --- the measure: the page's one signature device ------------------------
+   Two prices for the same model, drawn to scale. The gap is the product.
+   It is the only graphic on the page and it is made of the finding itself. */
+.hero{padding:clamp(3rem,6.5vw,5.5rem) 0 clamp(3rem,6vw,5rem)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(2rem,6vw,5rem);align-items:center}
+.proof{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.01em;
+  color:var(--amber);margin-bottom:1.4rem;
+}
+h1{
+  font-size:clamp(2.15rem,4.3vw,3.4rem);
+  line-height:1.06;letter-spacing:-.03em;font-weight:600;
+  text-wrap:balance;
+}
+.sub{
+  margin-top:1.3rem;font-size:clamp(1.08rem,1.75vw,1.32rem);
+  line-height:1.42;color:var(--slate);max-width:36ch;letter-spacing:-.012em;
+}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.5rem;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--navy);color:#fff;text-decoration:none;
+  padding:.72rem 1.15rem;border-radius:3px;font-size:.94rem;font-weight:500;
+  transition:background .15s;
+}
+.btn:hover,.btn:focus-visible{background:#1a3468}
+.install{
+  font-family:var(--mono);font-size:.88rem;color:var(--slate);
+  border:var(--rule);border-radius:3px;padding:.72rem 1.05rem;background:#fff;
+}
+
+.measure{border:var(--rule);border-radius:4px;background:#fff;padding:1.6rem 1.75rem}
+.measure-head{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:0;
+  color:var(--slate);margin-bottom:1.5rem;line-height:1.5;
+}
+.bars{display:grid;gap:.85rem}
+.bar{display:grid;grid-template-columns:5.5rem minmax(0,1fr) auto;align-items:center;gap:.85rem}
+.bar-name{font-size:.88rem;color:var(--slate)}
+.bar-track{height:22px;position:relative;background:#F4F5F8;border-radius:2px}
+.bar-fill{height:100%;background:var(--navy);opacity:.9;border-radius:2px;min-width:3px}
+.bar.hi .bar-fill{background:var(--amber);opacity:.9}
+.bar-val{font-family:var(--mono);font-size:.92rem;color:var(--ink);white-space:nowrap}
+.bar.hi .bar-val{color:var(--amber)}
+.measure-note{margin-top:1.1rem;font-size:.87rem;color:var(--slate);max-width:56ch}
+
+/* --- sections ----------------------------------------------------------- */
+section.blk{border-top:var(--rule);padding:clamp(3rem,6.5vw,5.5rem) 0}
+.grid{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:clamp(1rem,4vw,3.5rem)}
+.num{
+  font-family:var(--mono);font-size:.82rem;color:var(--navy);
+  letter-spacing:.02em;padding-top:.4rem;font-weight:500;
+}
+.body{max-width:60ch}
+h2{
+  font-size:clamp(1.55rem,2.9vw,2.15rem);line-height:1.14;
+  letter-spacing:-.025em;font-weight:600;margin-bottom:1.35rem;text-wrap:balance;
+}
+.lede{font-size:clamp(1.15rem,2.1vw,1.42rem);line-height:1.42;letter-spacing:-.014em;margin-bottom:1.35rem}
+.body p{margin-bottom:1.05rem;color:var(--slate)}
+.body p.ink{color:var(--ink)}
+.body strong{color:var(--ink);font-weight:600}
+.pull{
+  border-left:2px solid var(--navy);padding-left:1.15rem;margin:1.6rem 0;
+  font-size:1.06rem;color:var(--ink);
+}
+.links{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:1.7rem}
+.links a{
+  text-decoration:none;font-size:.93rem;color:var(--navy);font-weight:500;
+  border-bottom:1px solid rgba(16,33,71,.25);padding-bottom:1px;transition:border-color .15s;
+}
+.links a:hover,.links a:focus-visible{border-color:var(--navy)}
+
+/* --- the unit, set as a definition -------------------------------------- */
+.defn{border:var(--rule);border-radius:4px;background:#fff;padding:1.6rem 1.75rem;margin-bottom:1.6rem}
+.defn .term{font-size:1.28rem;font-weight:600;letter-spacing:-.02em}
+.defn .abbr{font-family:var(--mono);font-size:.9rem;color:var(--amber);margin-left:.6rem}
+.defn .gloss{margin-top:.6rem;color:var(--ink);font-size:1.02rem;line-height:1.5}
+.defn .unit{
+  margin-top:1rem;padding-top:.9rem;border-top:var(--rule);
+  font-family:var(--mono);font-size:.85rem;color:var(--slate);
+}
+
+.drops{list-style:none;margin:1.4rem 0;border-top:var(--rule)}
+.drops li{
+  display:grid;grid-template-columns:minmax(9rem,14rem) minmax(0,1fr);
+  gap:1rem;padding:.72rem 0;border-bottom:var(--rule);font-size:.95rem;align-items:baseline;
+}
+.drops .m{font-family:var(--mono);font-size:.86rem;color:var(--ink)}
+.drops .d{color:var(--slate)}
+
+/* --- three tools -------------------------------------------------------- */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair);
+  border:var(--rule);border-radius:4px;overflow:hidden;margin-top:.4rem}
+.tool{background:#fff;padding:1.5rem;display:flex;flex-direction:column}
+.tool h3{font-family:var(--mono);font-size:1rem;font-weight:600;margin-bottom:.55rem;letter-spacing:-.01em}
+.tool p{font-size:.93rem;color:var(--slate);margin:0}
+pre{
+  font-family:var(--mono);font-size:.88rem;background:var(--ink);color:#E8EAF0;
+  padding:.95rem 1.15rem;border-radius:3px;margin-top:1.4rem;overflow-x:auto;
+}
+pre .p{color:#8FA0C4}
+
+/* --- working with us ---------------------------------------------------- */
+.ways{list-style:none;margin-top:.4rem}
+.ways li{padding:1.15rem 0;border-bottom:var(--rule)}
+.ways li:first-child{border-top:var(--rule)}
+.ways b{display:block;font-weight:600;margin-bottom:.25rem}
+.ways span{color:var(--slate);font-size:.96rem}
+
+/* --- what we sell ------------------------------------------------------- */
+.offers{list-style:none;margin:1.6rem 0}
+.offers li{padding:1.25rem 0;border-bottom:var(--rule)}
+.offers li:first-child{border-top:var(--rule)}
+.offers b{font-weight:600;font-size:1.04rem}
+.offers .basis{font-family:var(--mono);font-size:.78rem;color:var(--amber);
+  margin-left:.65rem}
+.offers p{margin:.4rem 0 0;color:var(--slate);font-size:.95rem}
+
+footer{border-top:var(--rule);padding:2.5rem 0 3.5rem;font-size:.88rem;color:var(--slate)}
+footer .row{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center}
+footer a{text-decoration:none;border-bottom:1px solid var(--hair)}
+footer a:hover{border-color:var(--slate)}
+footer .rt{margin-left:auto}
+
+@media (max-width:820px){
+  .nav ul{
+    display:none;position:absolute;top:64px;left:0;right:0;background:var(--paper);
+    border-bottom:var(--rule);flex-direction:column;gap:0;padding:.5rem var(--gut) 1rem;
+  }
+  .nav ul.open{display:flex}
+  .nav ul li{width:100%;border-top:var(--rule)}
+  .nav a.link{display:block;padding:.85rem 0;font-size:1rem}
+  .navtoggle{display:block}
+  .grid{grid-template-columns:1fr;gap:.6rem}
+  .num{padding-top:0}
+  .tools{grid-template-columns:1fr}
+  .drops li{grid-template-columns:1fr;gap:.15rem}
+  .bar{grid-template-columns:5rem minmax(0,1fr) auto;gap:.6rem}
+  .hero .wrap{grid-template-columns:1fr;gap:2.5rem}
+  .measure{padding:1.25rem}
+
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

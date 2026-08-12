@@ -1,0 +1,88 @@
+/*
+ * Reckon Research: 2026 design tokens
+ *
+ * Load AFTER style.css and berth.css. This overrides the token layer and the
+ * base type only; every class name, layout rule and component in those files
+ * is left alone.
+ *
+ * The old system was Playfair Display over Source Serif 4 at a 680px measure:
+ * a research-blog look, and a good one. The new pages are Inter with a
+ * monospace for every quantity, which is a different argument. A measurement
+ * company sets its numbers in the face of an instrument, not the face of an
+ * essay.
+ *
+ * To remove: delete the <link> that loads this file. Nothing else changes.
+ */
+
+:root {
+  /* Paper rather than pure white. Slightly warm, easier under long reading,
+     and it separates the page from the cards that sit on it. */
+  --bg:               #FCFCFB;
+  --fg:               #0B0F1A;
+  --fg-muted:         #5A6478;
+  --fg-subtle:        #8A93A6;
+  --divider:          #E2E5EB;
+
+  /* The navy is the mark. The old value was a shade off it. */
+  --navy:             #102147;
+  --terminal-bg:      #0B0F1A;
+  --terminal-text:    #E8EAF0;
+  --terminal-comment: #8FA0C4;
+
+  /* One accent, used only where something has been measured. */
+  --amber:            #B4740B;
+
+  /* A little wider. The old measure was set for serif prose; Inter at 17px
+     carries a few more characters comfortably. */
+  --content-max:      760px;
+
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "SF Mono", SFMono-Regular, ui-monospace, "JetBrains Mono", "Roboto Mono", Menlo, monospace;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv05";
+}
+
+/* Headings were Playfair, a display serif. Inter at 600 with negative tracking
+   is the counterpart: same authority, and it stops the page reading as an
+   essay about a product rather than the product. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.14;
+}
+h1 { letter-spacing: -0.03em; line-height: 1.06; }
+
+/* Every quantity in mono. This is the one type rule that is specific to what
+   this company does: a number set in the same face as the sentence around it
+   reads as prose, and set in mono it reads as an instrument reading. */
+code, kbd, samp, pre, .mono, .num, .metric, .value, td.num, .stat {
+  font-family: var(--mono);
+  font-feature-settings: normal;
+}
+
+/* Tables carry most of the Index. Tighten them for a sans face. */
+table { font-size: 0.95rem; }
+th {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+}
+td { line-height: 1.5; }
+
+/* Links were underlined on hover against a serif body. A hairline border reads
+   better under Inter and does not shift the baseline. */
+a:hover { text-decoration: none; border-bottom: 1px solid currentColor; }
+main a[href]:not(.btn):not(.button) { border-bottom: 1px solid var(--divider); }
+main a[href]:not(.btn):not(.button):hover { border-bottom-color: currentColor; }
+
+/* The old nav was 52px against a serif wordmark. */
+:root { --nav-height: 64px; }
